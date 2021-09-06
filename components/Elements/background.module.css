@@ -1,0 +1,16 @@
+.backgroundContainer {
+  color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  background-position: center center;
+  background-size: cover;
+  margin-top: 5px;
+}
+.overlay {
+  background-color: rgba(56, 56, 56, 0.404);
+  backdrop-filter: blur(1px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

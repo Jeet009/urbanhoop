@@ -1,0 +1,26 @@
+.btnCover {
+  background-color: #ffc5c5 !important;
+  border-radius: 25px;
+}
+.input {
+  font-family: "Poppins", sans-serif;
+}
+.logo {
+  color: #fff !important;
+}
+
+.navbarBg {
+  background-color: #fd4040;
+}
+.navItemContainer {
+  background-color: whitesmoke;
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.search {
+  border-radius: 25px;
+}

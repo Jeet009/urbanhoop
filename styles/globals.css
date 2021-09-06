@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@300&display=swap");
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Bungee, sans-serif;
+  background: linear-gradient(to right bottom, #ffffff, #fd4040);
 }
 
 a {
@@ -13,4 +15,20 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.btn {
+  background-color: #ffc5c5 !important;
+}
+.btn-secondary {
+  background-color: #ffc5c5 !important;
+  font-family: "Poppins", sans-serif;
+  border-radius: 5px;
+  border: none;
+  color: #000000;
+}
+
+.fa-big {
+  font-size: 35px;
+  color: #ffffff !important;
 }
