@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: Bungee, sans-serif;
   background: linear-gradient(to right bottom, #ffffff, #fd4040);
+  overflow-x: hidden;
 }
 
 a {

@@ -1,0 +1,15 @@
+.card {
+  min-height: 30vh;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.cardImage {
+  min-height: 25vh;
+  background-color: whitesmoke;
+  background-size: cover;
+}
+.cardText h6 {
+  font-family: "Poppins", sans-serif;
+}

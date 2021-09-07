@@ -1,0 +1,31 @@
+.footerTop {
+  background-image: url("https://images.pexels.com/photos/3771054/pexels-photo-3771054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  min-height: 50vh;
+  background-size: cover;
+  background-position: center;
+}
+.overlay {
+  background-color: rgba(36, 36, 36, 0.74);
+  min-height: 50vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+.overlay p {
+  font-family: "Poppins", sans-serif;
+}
+.extraFooter {
+  min-height: 50vh;
+  background-color: #ff6d6d;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.extraFooter p {
+  font-family: "Poppins", sans-serif;
+}

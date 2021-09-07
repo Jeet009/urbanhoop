@@ -3,6 +3,8 @@ import Head from "next/head";
 import NavbarComponent from "../components/Navbars/NavbarComponent";
 import BottomNav from "../components/Navbars/BottomNav";
 import styles from "./maintemplate.module.css";
+import FooterTop from "../components/Footer/FooterTop";
+import ExtraFooter from "../components/Footer/ExtraFooter";
 
 function MainTemplate({ children }) {
   return (
@@ -29,6 +31,8 @@ function MainTemplate({ children }) {
       <div className={styles.container}>
         <main className={styles.main}>{children}</main>
       </div>
+      <FooterTop />
+      <ExtraFooter />
       {/* Footer */}
       <footer className={styles.footer}>
         <script
@@ -50,7 +54,7 @@ function MainTemplate({ children }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          delvice.in
+          UrbanHoop.in
         </a>
       </footer>
     </>
