@@ -9,22 +9,40 @@ function ListComponent({ title }) {
 
       <Row>
         <Col xs={6} md={2}>
-          <CardElement backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <CardElement
+            backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            product={true}
+          />
         </Col>
         <Col xs={6} md={2}>
-          <CardElement backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <CardElement
+            backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            product={true}
+          />
         </Col>
         <Col xs={6} md={2}>
-          <CardElement backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <CardElement
+            backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            product={true}
+          />
         </Col>
         <Col xs={6} md={2}>
-          <CardElement backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <CardElement
+            backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            product={true}
+          />
         </Col>
         <Col xs={6} md={2}>
-          <CardElement backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <CardElement
+            backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            product={true}
+          />
         </Col>
         <Col xs={6} md={2}>
-          <CardElement backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <CardElement
+            backgroundImage="https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            product={true}
+          />
         </Col>
       </Row>
     </div>

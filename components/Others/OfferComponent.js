@@ -11,6 +11,7 @@ function OfferComponent() {
             title={""}
             height={"50vh"}
             overlay={true}
+            href="/"
             backgroundImage={
               "https://images.pexels.com/photos/7263029/pexels-photo-7263029.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             }
@@ -21,6 +22,7 @@ function OfferComponent() {
             title={""}
             height={"50vh"}
             overlay={true}
+            href="/"
             backgroundImage={
               "https://images.pexels.com/photos/1114376/pexels-photo-1114376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             }

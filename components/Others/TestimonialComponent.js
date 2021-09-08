@@ -11,6 +11,7 @@ function TestimonialComponent() {
             title={"Testimonials"}
             height={"50vh"}
             overlay={true}
+            href="/"
             backgroundImage={
               "https://images.pexels.com/photos/2292919/pexels-photo-2292919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             }
@@ -21,6 +22,7 @@ function TestimonialComponent() {
             title={"Testimonials"}
             height={"50vh"}
             overlay={true}
+            href="/"
             backgroundImage={
               "https://images.pexels.com/photos/2292919/pexels-photo-2292919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             }

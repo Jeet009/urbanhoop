@@ -19,6 +19,11 @@ a:hover {
   text-decoration: none;
   display: block;
 }
+.Link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
 * {
   box-sizing: border-box;
 }

@@ -12,6 +12,7 @@ function BottomNav() {
             <BackgroundImageContainerEle
               title={"top-offers"}
               overlay={true}
+              href="/"
               height={"8vh"}
               backgroundImage={
                 "https://images.pexels.com/photos/1128317/pexels-photo-1128317.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
@@ -22,6 +23,9 @@ function BottomNav() {
             <BackgroundImageContainerEle
               title={"Food & Beverage"}
               overlay={true}
+              href={`/categories/1?name=${encodeURIComponent(
+                "Food & Beverage"
+              )}`}
               height={"8vh"}
               backgroundImage={
                 "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -32,6 +36,7 @@ function BottomNav() {
             <BackgroundImageContainerEle
               title={"Home Service"}
               overlay={true}
+              href={`/categories/2?name=${encodeURIComponent("Home Service")}`}
               height={"8vh"}
               backgroundImage={
                 "https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -42,7 +47,7 @@ function BottomNav() {
             <BackgroundImageContainerEle
               title={"All Categories"}
               overlay={true}
-              href={"/categories"}
+              href="/categories"
               height={"8vh"}
               backgroundImage={
                 "https://images.pexels.com/photos/3270162/pexels-photo-3270162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
