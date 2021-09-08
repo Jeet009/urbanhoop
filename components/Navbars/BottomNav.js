@@ -42,6 +42,7 @@ function BottomNav() {
             <BackgroundImageContainerEle
               title={"All Categories"}
               overlay={true}
+              href={"/categories"}
               height={"8vh"}
               backgroundImage={
                 "https://images.pexels.com/photos/3270162/pexels-photo-3270162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"

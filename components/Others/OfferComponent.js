@@ -8,7 +8,7 @@ function OfferComponent() {
       <Row>
         <Col xs={12} md={6}>
           <BackgroundImageContainerEle
-            title={"Offers"}
+            title={""}
             height={"50vh"}
             overlay={true}
             backgroundImage={
@@ -18,7 +18,7 @@ function OfferComponent() {
         </Col>
         <Col xs={12} md={6}>
           <BackgroundImageContainerEle
-            title={"Offers"}
+            title={""}
             height={"50vh"}
             overlay={true}
             backgroundImage={

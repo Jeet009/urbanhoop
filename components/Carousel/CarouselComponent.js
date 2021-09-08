@@ -4,7 +4,7 @@ import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle
 
 function CarouselComponent() {
   return (
-    <Carousel>
+    <Carousel prevIcon={false} nextIcon={false}>
       <Carousel.Item>
         <BackgroundImageContainerEle
           title={"All Categories"}

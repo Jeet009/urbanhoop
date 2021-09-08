@@ -1,3 +1,16 @@
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-image: url("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-position: center;
+  margin-right: 5px;
+}
+.avatarContainer {
+  display: flex;
+  align-items: center;
+}
 .backgroundContainer {
   color: white;
   border-radius: 5px;
@@ -14,4 +27,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.testimonialText {
+  width: 80%;
+  height: 100%;
+  background-color: rgba(255, 120, 120, 0.623);
+  backdrop-filter: blur(1px);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.testimonialText p {
+  font-family: "Poppins", sans-serif;
 }

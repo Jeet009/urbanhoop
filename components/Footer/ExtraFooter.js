@@ -7,7 +7,12 @@ function ExtraFooter() {
     <div className={styles.extraFooter}>
       <Container>
         <Row>
+          <Col xs={12} lg={6} className={styles.circleContainer}>
+            <div className={styles.circle}></div>
+          </Col>
+
           <Col xs={12} lg={6}>
+            <br />
             <h1>Extra Section</h1>
             <p>
               Anim aliqua nostrud laborum enim. Anim laboris commodo irure anim
@@ -18,7 +23,6 @@ function ExtraFooter() {
             </p>
             <button className="btn btn-custom">Contact Now</button>
           </Col>
-          <Col xs={12} lg={6}></Col>
         </Row>
       </Container>
     </div>

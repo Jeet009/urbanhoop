@@ -32,7 +32,9 @@ function MainTemplate({ children }) {
         <main className={styles.main}>{children}</main>
       </div>
       <FooterTop />
+      <br />
       <ExtraFooter />
+      <br />
       {/* Footer */}
       <footer className={styles.footer}>
         <script

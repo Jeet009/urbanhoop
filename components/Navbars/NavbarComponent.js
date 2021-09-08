@@ -14,7 +14,7 @@ function NavbarComponent() {
       <Navbar className={"navbar-bg" + " " + styles.navbarBg} expand="lg">
         <Container className="navbar-container">
           {/* Logo  */}
-          <Navbar.Brand href="#home" className={styles.logo}>
+          <Navbar.Brand href="/" className={styles.logo}>
             UrbanHoop.in
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
