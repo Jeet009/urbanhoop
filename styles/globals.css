@@ -15,9 +15,10 @@ a {
   display: block;
 }
 a:hover {
-  color: white;
+  color: #ff8888;
   text-decoration: none;
   display: block;
+  transition: ease-in 0.2s;
 }
 .Link {
   color: inherit;
