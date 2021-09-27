@@ -20,8 +20,8 @@ function CardElement({
           <br />
           {product && (
             <>
-              <h5>Title</h5>
-              <h6>Elit ut consequat ex laboris.</h6>
+              <h5>{title}</h5>
+              <h6>{sub_category_name}</h6>
             </>
           )}
           {!product && (

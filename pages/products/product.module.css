@@ -1,0 +1,27 @@
+.details_container {
+  padding-top: 5vh;
+}
+.details_container h6 {
+  font-family: "Poppins", sans-serif;
+}
+.details_container h5 {
+  font-family: Bungee, sans-serif;
+}
+.details_container p {
+  font-family: "Poppins", sans-serif;
+}
+.details_table {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+.product_detail_image_one {
+  min-height: 35vh;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+}
+.product_detail_image_two {
+  min-height: 35vh;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+}

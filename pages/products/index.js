@@ -16,8 +16,8 @@ function index() {
           <Col xs={12} md={3}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Vegetable"
-              href={"/products/1?name=Vegetable"}
+              title="Product 1"
+              href={"/products/1?product_name=Product 1"}
               sub_category_name={subcategoryname}
               product={true}
             />
@@ -25,8 +25,8 @@ function index() {
           <Col xs={12} md={3}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Restaurant"
-              href={"/products/1?name=Restaurant"}
+              title="Product 2"
+              href={"/products/1?product_name=Product 2"}
               sub_category_name={subcategoryname}
               product={true}
             />
@@ -34,8 +34,8 @@ function index() {
           <Col xs={12} md={3}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products/1?name=Grocery"}
+              title="Product 3"
+              href={"/products/1?product_name=Product 3"}
               sub_category_name={subcategoryname}
               product={true}
             />
@@ -43,80 +43,8 @@ function index() {
           <Col xs={12} md={3}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products/1?name=Grocery"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Vegetable"
-              href={"/products/1?name=Vegetable"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Restaurant"
-              href={"/products/1?name=Restaurant"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products/1?name=Grocery"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products/1?name=Grocery"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Vegetable"
-              href={"/products/1?name=Vegetable"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Restaurant"
-              href={"/products/1?name=Restaurant"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products/1?name=Grocery"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products/1?name=Grocery"}
+              title="Product 4"
+              href={"/products/1?product_name=Product 4"}
               sub_category_name={subcategoryname}
               product={true}
             />
