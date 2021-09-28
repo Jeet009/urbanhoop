@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Navbar,
   Nav,
@@ -6,11 +6,22 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
+import ModalTemplate from "../../template/ModalTemplate";
 import styles from "./navbar.module.css";
 
 function NavbarComponent() {
+  const [show, setShow] = useState(false);
+
+  const handleLoginModal = () => {
+    setShow(!show);
+  };
+
+  const handleClose = () => {
+    setShow(!show);
+  };
   return (
     <div>
+      <ModalTemplate show={show} handleClose={handleClose} modalType="login" />
       <Navbar className={"navbar-bg" + " " + styles.navbarBg} expand="lg">
         <Container className="navbar-container">
           {/* Logo  */}
@@ -48,7 +59,12 @@ function NavbarComponent() {
                 className="fa fa-big fa-shopping-cart"
               ></Nav.Link>
               <Nav.Link href="#auth">
-                <button className="btn btn-secondary">Login / Register</button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={handleLoginModal}
+                >
+                  Login / Register
+                </button>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
