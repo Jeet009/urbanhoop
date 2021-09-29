@@ -12,15 +12,15 @@ function LoginComponent() {
   return (
     <div>
       <center>
-        <h2>Enter Your Phone Number To Get OTP</h2>
+        <h4>Enter Your Phone Number To Get OTP</h4>
         <hr />
       </center>
       <Container>
         <Row className={styles.loginSection}>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={12}>
             <img src="/assets/img.png" alt="..." className="img-fluid" />
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={12}>
             <Form>
               {gotOTP ? (
                 <Form.Group className="mb-3">

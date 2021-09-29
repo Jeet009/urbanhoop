@@ -11,17 +11,35 @@ import styles from "./navbar.module.css";
 
 function NavbarComponent() {
   const [show, setShow] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   const handleLoginModal = () => {
     setShow(!show);
+  };
+  const handleCartModal = () => {
+    setShowCart(!showCart);
   };
 
   const handleClose = () => {
     setShow(!show);
   };
+  const handleCloseCart = () => {
+    setShowCart(!showCart);
+  };
   return (
     <div>
-      <ModalTemplate show={show} handleClose={handleClose} modalType="login" />
+      <ModalTemplate
+        show={show}
+        handleClose={handleClose}
+        modalType="login"
+        sz="md"
+      />
+      <ModalTemplate
+        show={showCart}
+        handleClose={handleCloseCart}
+        modalType="cart"
+        sz="md"
+      />
       <Navbar className={"navbar-bg" + " " + styles.navbarBg} expand="lg">
         <Container className="navbar-container">
           {/* Logo  */}
@@ -57,6 +75,7 @@ function NavbarComponent() {
               <Nav.Link
                 href="#cart"
                 className="fa fa-big fa-shopping-cart"
+                onClick={handleCartModal}
               ></Nav.Link>
               <Nav.Link href="#auth">
                 <button

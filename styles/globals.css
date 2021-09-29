@@ -34,6 +34,10 @@ a:hover {
 .btn {
   background-color: #ffc5c5 !important;
 }
+.btn-large {
+  background-color: #ffc5c5 !important;
+  width: 100%;
+}
 .btn-secondary {
   background-color: #ffc5c5 !important;
   font-family: "Poppins", sans-serif;

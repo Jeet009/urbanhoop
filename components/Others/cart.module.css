@@ -1,0 +1,9 @@
+.cartContainer {
+  min-height: 40vh;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.couponContainer {
+  background-color: whitesmoke;
+  padding-top: 10px;
+}

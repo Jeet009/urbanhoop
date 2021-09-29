@@ -13,3 +13,22 @@
 .cardText h6 {
   font-family: "Poppins", sans-serif;
 }
+
+/* Card Rectangle  */
+.cardRect {
+  min-height: 10vh;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.cardRectImage {
+  min-height: 10vh;
+  background-color: whitesmoke;
+  background-size: cover;
+  border-radius: 5px;
+}
+.cardRecatText h6 {
+  font-family: Bungee, sans-serif !important;
+}
