@@ -62,6 +62,12 @@ a:hover {
   font-size: 35px;
   color: #ffffff !important;
 }
+.navbar-toggler {
+  border: none !important;
+}
+.navbar-toggler:focus {
+  border: none !important;
+}
 /* Modal  */
 .modal {
   background-color: #693f3f98 !important;

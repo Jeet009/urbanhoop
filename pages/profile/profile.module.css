@@ -1,0 +1,22 @@
+.profileDiv {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Poppins", sans-serif;
+}
+.profileImage {
+  height: 150px;
+  width: 150px;
+  background-color: whitesmoke;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+.profileText {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}

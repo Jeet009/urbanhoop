@@ -29,6 +29,18 @@
   background-size: cover;
   border-radius: 5px;
 }
+.cardRecatText {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+
+  min-height: 10vh;
+}
 .cardRecatText h6 {
   font-family: Bungee, sans-serif !important;
+}
+
+.cardRecatText span {
+  font-family: "Poppins", sans-serif !important;
 }

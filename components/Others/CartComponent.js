@@ -67,8 +67,8 @@ function CartComponent() {
           />
           <div className={styles.cartContainer}>
             <h4>Cart</h4>
-            <RectCardElement />
-            <RectCardElement />
+            <RectCardElement type="cart" />
+            <RectCardElement type="cart" />
             <Container className={styles.couponContainer}>
               <Row>
                 <Col xs={6}>
