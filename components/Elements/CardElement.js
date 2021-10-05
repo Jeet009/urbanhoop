@@ -14,7 +14,9 @@ function CardElement({
       <a className={styles.card}>
         <div
           className={styles.cardImage}
-          style={{ backgroundImage: "url(" + backgroundImage + ")" }}
+          style={{
+            backgroundImage: "url(/assets/PH.png)",
+          }}
         ></div>
         <div className={styles.cardText}>
           <br />

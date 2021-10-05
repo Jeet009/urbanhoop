@@ -10,10 +10,11 @@ function index() {
       <center>
         <br />
         <h4>{subcategoryname}</h4>
+        <br />
       </center>
-      <Container>
+      <>
         <Row>
-          <Col xs={12} md={3}>
+          <Col xs={6} md={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Product 1"
@@ -22,7 +23,7 @@ function index() {
               product={true}
             />
           </Col>
-          <Col xs={12} md={3}>
+          <Col xs={6} md={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Product 2"
@@ -31,7 +32,7 @@ function index() {
               product={true}
             />
           </Col>
-          <Col xs={12} md={3}>
+          <Col xs={6} md={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Product 3"
@@ -40,7 +41,7 @@ function index() {
               product={true}
             />
           </Col>
-          <Col xs={12} md={3}>
+          <Col xs={6} md={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Product 4"
@@ -50,7 +51,7 @@ function index() {
             />
           </Col>
         </Row>
-      </Container>
+      </>
     </div>
   );
 }

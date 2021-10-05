@@ -8,11 +8,16 @@ function BackgroundImageContainerEle({
   backgroundImage,
   overlay,
   href,
+  type,
 }) {
   return (
     <Link href={href}>
       <a
-        className={styles.backgroundContainer}
+        className={
+          type == "carousel"
+            ? styles.backgroundContainer
+            : styles.backgroundCover
+        }
         style={{
           minHeight: height,
           backgroundImage: "url(" + backgroundImage + ")",

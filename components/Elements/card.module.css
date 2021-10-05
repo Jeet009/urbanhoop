@@ -7,13 +7,50 @@
 }
 .cardImage {
   min-height: 25vh;
-  background-color: whitesmoke;
-  background-size: cover;
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .cardText h6 {
   font-family: "Poppins", sans-serif;
 }
 
+@media (max-width: 320px) {
+  .cardImage {
+    min-height: 16vh;
+  }
+  .card {
+    min-height: 21vh;
+  }
+}
+@media (max-width: 375px) and (min-width: 330px) {
+  .cardImage {
+    min-height: 19vh;
+  }
+  .card {
+    min-height: 24vh;
+  }
+}
+@media (max-width: 500px) and (min-width: 376px) {
+  .cardImage {
+    min-height: 23vh;
+  }
+}
+
+@media (min-width: 1450px) {
+  .cardImage {
+    min-height: 41vh;
+  }
+}
+
+@media (max-width: 1450px) and (min-width: 700px) {
+  .cardImage {
+    min-height: 26vh;
+  }
+  .card {
+    min-height: 31vh;
+  }
+}
 /* Card Rectangle  */
 .cardRect {
   min-height: 10vh;

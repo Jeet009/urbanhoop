@@ -68,6 +68,15 @@ a:hover {
 .navbar-toggler:focus {
   border: none !important;
 }
+/* Carousel  */
+.carousel {
+  min-height: 50vh;
+}
+@media (max-width: 450px) {
+  .carousel {
+    min-height: 15vh !important;
+  }
+}
 /* Modal  */
 .modal {
   background-color: #693f3f98 !important;

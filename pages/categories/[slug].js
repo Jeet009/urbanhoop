@@ -11,10 +11,11 @@ function SubCategories() {
       <center>
         <br />
         <h4>{name}</h4>
+        <br />
       </center>
-      <Container>
+      <>
         <Row>
-          <Col xs={12} md={6}>
+          <Col xs={6} md={3} lg={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Vegetable"
@@ -23,7 +24,7 @@ function SubCategories() {
               product={false}
             />
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={6} md={3} lg={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Restaurant"
@@ -32,7 +33,7 @@ function SubCategories() {
               product={false}
             />
           </Col>
-          <Col xs={12} md={12}>
+          <Col xs={6} md={3} lg={2}>
             <CardElement
               backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               title="Grocery"
@@ -42,7 +43,7 @@ function SubCategories() {
             />
           </Col>
         </Row>
-      </Container>
+      </>
     </div>
   );
 }

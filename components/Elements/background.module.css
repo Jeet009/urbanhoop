@@ -16,6 +16,26 @@
   border-radius: 5px;
   overflow: hidden;
   background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 5px;
+  min-height: 50vh;
+}
+@media (max-width: 450px) {
+  .backgroundContainer {
+    min-height: 15vh;
+  }
+}
+@media (min-width: 1450px) {
+  .backgroundContainer {
+    min-height: 75vh;
+  }
+}
+.backgroundCover {
+  color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   margin-top: 5px;
