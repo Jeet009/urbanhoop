@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import CardElement from "../../components/Elements/CardElement";
+import { SubcategoryContext } from "../../context/SubcategoryContext";
 
-function SubCategories() {
+function SubCategories({ data }) {
+  const [subcategories, setSubcategories] = useState(data);
+  const { handleSubcategoryAddition } = useContext(SubcategoryContext);
+
+  useEffect(() => {
+    if (typeof data === "object" && data.length > 0) {
+      handleSubcategoryAddition(data);
+    }
+  }, [handleSubcategoryAddition]);
+
+  useEffect(() => {
+    if (data.length <= 0 && contextRest.subcategories.length > 0) {
+      setSubcategories(contextRest.subcategories);
+    }
+  }, []);
   const router = useRouter();
   const { name } = router.query;
+
   return (
     <div>
       <center>
@@ -15,37 +31,37 @@ function SubCategories() {
       </center>
       <>
         <Row>
-          <Col xs={6} md={3} lg={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Vegetable"
-              href={"/products?subcategoryname=Vegetable"}
-              sub_category_name={name}
-              product={false}
-            />
-          </Col>
-          <Col xs={6} md={3} lg={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Restaurant"
-              href={"/products?subcategoryname=Restaurant"}
-              sub_category_name={name}
-              product={false}
-            />
-          </Col>
-          <Col xs={6} md={3} lg={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Grocery"
-              href={"/products?subcategoryname=Grocery"}
-              sub_category_name={name}
-              product={false}
-            />
-          </Col>
+          {subcategories.map((subcategory) => (
+            <Col xs={6} md={3} lg={2} key={subcategory.id}>
+              <CardElement
+                backgroundImage={subcategory.background_image[0].url}
+                title={subcategory.name}
+                href={`/products?subcategoryname=${subcategory.name}&&subcategoryid=${subcategory.id}`}
+                sub_category_name={name}
+                product={false}
+              />
+            </Col>
+          ))}
         </Row>
       </>
     </div>
   );
 }
 
+export async function getServerSideProps(context) {
+  const slug = context.query.slug;
+  const res = await fetch(
+    `http://139.59.38.251:1337/subcategories/?category=${slug}`
+  );
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
 export default SubCategories;

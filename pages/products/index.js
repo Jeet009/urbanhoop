@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import CardElement from "../../components/Elements/CardElement";
-function index() {
+import { ProductContext } from "../../context/ProductContext";
+function index({ data }) {
+  const [products, setProducts] = useState(data);
+  const { handleProductAddition, ...contextRest } = useContext(ProductContext);
+
   const router = useRouter();
   const { subcategoryname } = router.query;
+
+  useEffect(() => {
+    if (typeof data === "object" && data.length > 0) {
+      handleProductAddition(data);
+    }
+  }, [handleProductAddition]);
+
+  useEffect(() => {
+    if (data.length <= 0 && contextRest.products.length > 0) {
+      setProducts(contextRest.products);
+    }
+  }, []);
+
   return (
     <div>
       <center>
@@ -14,46 +31,38 @@ function index() {
       </center>
       <>
         <Row>
-          <Col xs={6} md={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Product 1"
-              href={"/products/1?product_name=Product 1"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={6} md={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/3937468/pexels-photo-3937468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Product 2"
-              href={"/products/1?product_name=Product 2"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={6} md={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Product 3"
-              href={"/products/1?product_name=Product 3"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
-          <Col xs={6} md={2}>
-            <CardElement
-              backgroundImage="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              title="Product 4"
-              href={"/products/1?product_name=Product 4"}
-              sub_category_name={subcategoryname}
-              product={true}
-            />
-          </Col>
+          {products.map((product) => (
+            <Col xs={6} md={2} key={product.id}>
+              <CardElement
+                backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                title={product.product_name}
+                href={`/products/${product.id}?product_name=${product.product_name}`}
+                sub_category_name={subcategoryname}
+                product={true}
+              />
+            </Col>
+          ))}
         </Row>
       </>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const slug = context.query.subcategoryid;
+  const res = await fetch(
+    `http://139.59.38.251:1337/products/?subcategory=${slug}`
+  );
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
 }
 
 export default index;

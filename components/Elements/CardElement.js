@@ -15,7 +15,7 @@ function CardElement({
         <div
           className={styles.cardImage}
           style={{
-            backgroundImage: "url(/assets/PH.png)",
+            backgroundImage: `url(http://139.59.38.251:1337${backgroundImage})`,
           }}
         ></div>
         <div className={styles.cardText}>
