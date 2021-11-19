@@ -3,49 +3,44 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
 import styles from "./product.module.css";
 
-function productList() {
+function productList({ data, subcategory, category }) {
   const router = useRouter();
   const { product_name } = router.query;
-
   return (
     <div className={styles.details_container}>
       <Container>
         <h1>{product_name}</h1>
-        <h6>Food & Beverage</h6>
-        <p>
-          Adipisicing culpa aliqua id irure officia proident ipsum magna
-          cupidatat est nisi commodo.
-        </p>
+        <h6>
+          {subcategory.name} - {category.name}
+        </h6>
+        <p>{data.product_info}</p>
         <Row>
-          <Col xs={6}>
-            <div className={styles.product_detail_image_one}></div>
-          </Col>
-          <Col xs={6}>
-            <div className={styles.product_detail_image_two}></div>
-          </Col>
+          {data.product_images.map((image) => (
+            <Col xs={6} key={data.id}>
+              <div
+                className={styles.product_detail_image}
+                style={{
+                  backgroundImage: `url(http://139.59.38.251:1337${image.url})`,
+                }}
+              ></div>
+            </Col>
+          ))}
         </Row>
         <br />
-        <p>
-          Adipisicing culpa aliqua id irure officia proident ipsum magna
-          cupidatat est nisi commodo. Adipisicing culpa aliqua id irure officia
-          proident ipsum magna cupidatat est nisi commodo.
-        </p>
+        <p>{data.product_description}</p>
         <Row className={styles.details_table}>
           <>
             <Col xs={6}>
               <h5>Details</h5>
             </Col>
             <Col xs={6}>
-              <p>
-                Adipisicing culpa aliqua id irure officia proident ipsum magna
-                cupidatat est nisi commodo.
-              </p>
+              <p>{data.product_description_table.details}</p>
             </Col>
           </>
           <hr />
           <>
             <Col xs={6}>
-              <h5>About Product</h5>
+              <h5>{data.product_description_table.about_product}</h5>
             </Col>
             <Col xs={6}>
               <p>
@@ -62,6 +57,25 @@ function productList() {
       </Container>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const slug = context.query.slug;
+  const res = await fetch(`http://139.59.38.251:1337/products/${slug}`);
+  const data = await res.json();
+  const categoryDetails = await fetch(
+    `http://139.59.38.251:1337/categories/${data.subcategory.category}`
+  );
+  const category = await categoryDetails.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { data: data, subcategory: data.subcategory, category: category }, // will be passed to the page component as props
+  };
 }
 
 export default productList;
