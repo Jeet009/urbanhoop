@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -6,12 +6,14 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
 import ModalTemplate from "../../template/ModalTemplate";
 import styles from "./navbar.module.css";
 
 function NavbarComponent() {
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const handleLoginModal = () => {
     setShow(!show);
@@ -78,12 +80,16 @@ function NavbarComponent() {
                 onClick={handleCartModal}
               ></Nav.Link>
               <Nav.Link href="#auth">
-                <button
-                  className="btn btn-secondary"
-                  onClick={handleLoginModal}
-                >
-                  Login / Register
-                </button>
+                {user ? (
+                  "Jeet"
+                ) : (
+                  <button
+                    className="btn btn-secondary"
+                    onClick={handleLoginModal}
+                  >
+                    Login / Register
+                  </button>
+                )}
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
