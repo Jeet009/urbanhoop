@@ -30,6 +30,10 @@ function LoginComponent() {
         setConfirmationResult(confirmationResult);
         setGotOTP(true);
       })
+      .then(() => {
+        setPhoneNumber("");
+        setOtp("");
+      })
       .catch(function (error) {
         console.log("error", error);
       });
@@ -45,7 +49,6 @@ function LoginComponent() {
       .then(function (result) {
         var user = result.user;
         initializeUser(user);
-        window.location.href = "/";
       })
       .catch(function (error) {
         console.log(error);
@@ -54,10 +57,15 @@ function LoginComponent() {
   return (
     <div>
       <center>
-        <h4>Enter Your Phone Number To Get OTP</h4>
+        {gotOTP ? (
+          <h4>Enter Your OTP</h4>
+        ) : (
+          <h4>Enter Your Phone Number To Get OTP</h4>
+        )}
+
         <hr />
       </center>
-      <div id="recaptcha-container"></div>
+      {!gotOTP && <div id="recaptcha-container"></div>}
       <Container>
         <Row className={styles.loginSection}>
           <Col xs={12} md={12}>
@@ -70,7 +78,7 @@ function LoginComponent() {
                   <Form.Group className="mb-3">
                     <Form.Label>Enter Your OTP</Form.Label>
                     <Form.Control
-                      type="number"
+                      name="otp"
                       placeholder="Enter OTP"
                       value={otp}
                       onChange={handleOtpChange}
@@ -86,8 +94,9 @@ function LoginComponent() {
                     <Form.Label>Phone Number</Form.Label>
                     <Form.Control
                       type="phone"
-                      placeholder="Enter Phone Number"
+                      name="phone"
                       value={phoneNumber}
+                      placeholder="Enter Phone Number"
                       onChange={handlePhoneNumber}
                     />
                   </Form.Group>

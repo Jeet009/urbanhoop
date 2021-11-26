@@ -81,7 +81,9 @@ function NavbarComponent() {
               ></Nav.Link>
               <Nav.Link href="#auth">
                 {user ? (
-                  "Jeet"
+                  <Navbar.Brand href="/" className={styles.logo}>
+                    {user.phoneNumber}
+                  </Navbar.Brand>
                 ) : (
                   <button
                     className="btn btn-secondary"

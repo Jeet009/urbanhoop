@@ -4,6 +4,7 @@ import { SubcategoryProvider } from "../context/SubcategoryContext";
 import "../styles/globals.css";
 import MainTemplate from "../template/MainTemplate";
 import { AuthProvider } from "../context/AuthContext";
+import { CartProvider } from "../context/CartContext";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,7 +13,9 @@ function MyApp({ Component, pageProps }) {
         <CategoryProvider>
           <SubcategoryProvider>
             <ProductProvider>
-              <Component {...pageProps} />
+              <CartProvider>
+                <Component {...pageProps} />
+              </CartProvider>
             </ProductProvider>
           </SubcategoryProvider>
         </CategoryProvider>

@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
 import styles from "./product.module.css";
+import { AuthContext } from "../../context/AuthContext";
+import { CartContext } from "../../context/CartContext";
 
 function productList({ data, subcategory, category }) {
   const router = useRouter();
   const { product_name } = router.query;
+  const { user } = useContext(AuthContext);
+  const { handleCartAddition, cartData } = useContext(CartContext);
+
+  const [cartFilteredData, setCartFilteredData] = useState();
+
+  useEffect(() => {
+    if (cartData) {
+      cartData.forEach((res) => {
+        if (res.id == data.id) {
+          setCartFilteredData(res.id);
+        }
+      });
+    }
+  }, [cartData]);
+
+  const handleAddCart = () => {
+    handleCartAddition(data);
+  };
+
   return (
     <div className={styles.details_container}>
       <Container>
@@ -50,10 +71,17 @@ function productList({ data, subcategory, category }) {
             </Col>
           </>
         </Row>
-        <button className="btn btn-custom-float">
-          <span className="fa fa-shopping-cart"></span>
-          {"  "}Add To Cart
-        </button>
+        {user && (
+          <button
+            className={
+              cartFilteredData !== data.id ? "btn btn-custom-float" : "d-none"
+            }
+            onClick={handleAddCart}
+          >
+            <span className="fa fa-shopping-cart"></span>
+            {"  "} Add To Cart
+          </button>
+        )}
       </Container>
     </div>
   );
