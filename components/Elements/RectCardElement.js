@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./card.module.css";
 
-function RectCardElement({ type }) {
+function RectCardElement({ type, name, subcategory }) {
   return (
     <div className={styles.cardRect}>
       {type == "cart" && (
@@ -18,8 +18,8 @@ function RectCardElement({ type }) {
           </Col>
           <Col xs={6}>
             <div className={styles.cardRecatText}>
-              <h6>Food With Items</h6>
-              <span>Category</span>
+              <h6>{name}</h6>
+              <span>{subcategory}</span>
               <div>
                 <h5 className="fa fa-plus-square"></h5>
                 {"     "}1{"     "}

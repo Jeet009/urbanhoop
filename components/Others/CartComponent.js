@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle";
 import RectCardElement from "../Elements/RectCardElement";
@@ -6,6 +6,11 @@ import styles from "./cart.module.css";
 
 function CartComponent() {
   const [checkout, setCheckout] = useState(false);
+  const [cartProduct, setCartProduct] = useState(
+    JSON.parse(localStorage.getItem("cart"))
+  );
+
+  console.log(cartProduct);
   const handleCheckout = () => {
     setCheckout(!checkout);
   };
@@ -67,8 +72,14 @@ function CartComponent() {
           />
           <div className={styles.cartContainer}>
             <h4>Cart</h4>
-            <RectCardElement type="cart" />
-            <RectCardElement type="cart" />
+            {cartProduct &&
+              cartProduct.map((data) => (
+                <RectCardElement
+                  type="cart"
+                  name={data.product_name}
+                  subcategory={data.subcategory.name}
+                />
+              ))}
             <Container className={styles.couponContainer}>
               <Row>
                 <Col xs={6}>
