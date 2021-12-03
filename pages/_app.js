@@ -9,17 +9,17 @@ import { CartProvider } from "../context/CartContext";
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <MainTemplate>
-        <CategoryProvider>
-          <SubcategoryProvider>
-            <ProductProvider>
-              <CartProvider>
+      <CartProvider>
+        <MainTemplate>
+          <CategoryProvider>
+            <SubcategoryProvider>
+              <ProductProvider>
                 <Component {...pageProps} />
-              </CartProvider>
-            </ProductProvider>
-          </SubcategoryProvider>
-        </CategoryProvider>
-      </MainTemplate>
+              </ProductProvider>
+            </SubcategoryProvider>
+          </CategoryProvider>
+        </MainTemplate>
+      </CartProvider>
     </AuthProvider>
   );
 }

@@ -34,7 +34,9 @@ function index({ data }) {
           {products.map((product) => (
             <Col xs={6} md={2} key={product.id}>
               <CardElement
-                backgroundImage="https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                backgroundImage={
+                  product.background_image[0] && product.background_image[0].url
+                }
                 title={product.product_name}
                 href={`/products/${product.id}?product_name=${product.product_name}`}
                 sub_category_name={subcategoryname}

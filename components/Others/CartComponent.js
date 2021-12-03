@@ -1,16 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+import { CartContext } from "../../context/CartContext";
 import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle";
 import RectCardElement from "../Elements/RectCardElement";
 import styles from "./cart.module.css";
 
 function CartComponent() {
   const [checkout, setCheckout] = useState(false);
-  const [cartProduct, setCartProduct] = useState(
-    JSON.parse(localStorage.getItem("cart"))
-  );
+  const { user } = useContext(AuthContext);
+  const { cartData } = useContext(CartContext);
 
-  console.log(cartProduct);
   const handleCheckout = () => {
     setCheckout(!checkout);
   };
@@ -70,41 +70,59 @@ function CartComponent() {
               "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             }
           />
-          <div className={styles.cartContainer}>
-            <h4>Cart</h4>
-            {cartProduct &&
-              cartProduct.map((data) => (
-                <RectCardElement
-                  type="cart"
-                  name={data.product_name}
-                  subcategory={data.subcategory.name}
-                />
-              ))}
-            <Container className={styles.couponContainer}>
-              <Row>
-                <Col xs={6}>
-                  <h6>Total</h6>
-                  <h6>Rs. 500 /-</h6>
-                  <h6>Quantity - 2</h6>
-                </Col>
-                <Col xs={6}>
-                  <Form>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Enter Coupon Code</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter Coupon Code"
-                      />
-                    </Form.Group>
-                  </Form>
-                </Col>
-              </Row>
-            </Container>
-            <br />
-            <button className="btn btn-large" onClick={handleCheckout}>
-              Add Location
-            </button>
-          </div>
+          {user ? (
+            <div className={styles.cartContainer}>
+              <h4>Cart</h4>
+              {cartData &&
+                cartData.map((data) => (
+                  <RectCardElement
+                    key={data.key}
+                    type="cart"
+                    name={data.cart.product_name}
+                    subcategory={data.cart.subcategory.name}
+                    backgroundImage={
+                      data.cart.background_image[0] &&
+                      data.cart.background_image[0].url
+                    }
+                    ProductId={data.key}
+                    quantity={data.quantity}
+                  />
+                ))}
+              <Container className={styles.couponContainer}>
+                <Row>
+                  <Col xs={6}>
+                    <h6>Total</h6>
+                    <h6>Rs. 500 /-</h6>
+                    <h6>Quantity - 2</h6>
+                  </Col>
+                  <Col xs={6}>
+                    <Form>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Enter Coupon Code</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter Coupon Code"
+                        />
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                </Row>
+              </Container>
+              <br />
+              <button className="btn btn-large" onClick={handleCheckout}>
+                Add Location
+              </button>
+            </div>
+          ) : (
+            <div className={styles.cartContainer}>
+              <center>
+                <h4>
+                  Login & Add Product To Your Cart
+                  <hr />
+                </h4>
+              </center>
+            </div>
+          )}
         </>
       )}
     </div>

@@ -14,17 +14,24 @@ function productList({ data, subcategory, category }) {
   const [cartFilteredData, setCartFilteredData] = useState();
 
   useEffect(() => {
-    if (cartData) {
-      cartData.forEach((res) => {
-        if (res.id == data.id) {
-          setCartFilteredData(res.id);
-        }
-      });
-    }
+    filterCart();
   }, [cartData]);
 
-  const handleAddCart = () => {
-    handleCartAddition(data);
+  const filterCart = () => {
+    if (cartData) {
+      cartData.forEach((res) => {
+        if (res.cart.id == data.id) {
+          setCartFilteredData(res.cart.id);
+        }
+      });
+    } else {
+      filterCart();
+    }
+  };
+
+  const handleAddCart = async () => {
+    const res = await handleCartAddition(data);
+    window.location.href = "/";
   };
 
   return (
@@ -61,13 +68,10 @@ function productList({ data, subcategory, category }) {
           <hr />
           <>
             <Col xs={6}>
-              <h5>{data.product_description_table.about_product}</h5>
+              <h5>About Product</h5>
             </Col>
             <Col xs={6}>
-              <p>
-                Adipisicing culpa aliqua id irure officia proident ipsum magna
-                cupidatat est nisi commodo.
-              </p>
+              <p>{data.product_description_table.about_product}</p>
             </Col>
           </>
         </Row>

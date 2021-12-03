@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Col, Row } from "react-bootstrap";
+import { CartContext } from "../../context/CartContext";
 import styles from "./card.module.css";
 
-function RectCardElement({ type, name, subcategory }) {
+function RectCardElement({
+  type,
+  name,
+  subcategory,
+  backgroundImage,
+  ProductId,
+  quantity,
+}) {
+  const {
+    handleDeleteCartData,
+    handleQuantityIncrement,
+    handleQuantityDecrement,
+  } = useContext(CartContext);
+
   return (
     <div className={styles.cardRect}>
       {type == "cart" && (
@@ -11,8 +25,7 @@ function RectCardElement({ type, name, subcategory }) {
             <div
               className={styles.cardRectImage}
               style={{
-                backgroundImage:
-                  "url(https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)",
+                backgroundImage: `url(http://139.59.38.251:1337${backgroundImage})`,
               }}
             ></div>
           </Col>
@@ -21,14 +34,25 @@ function RectCardElement({ type, name, subcategory }) {
               <h6>{name}</h6>
               <span>{subcategory}</span>
               <div>
-                <h5 className="fa fa-plus-square"></h5>
-                {"     "}1{"     "}
-                <h5 className="fa fa-minus-square"></h5>
+                <h5
+                  className="fa fa-plus-square"
+                  onClick={() => handleQuantityIncrement(ProductId)}
+                ></h5>
+                {"     "}
+                {quantity}
+                {"     "}
+                <h5
+                  className="fa fa-minus-square"
+                  onClick={() => handleQuantityDecrement(ProductId)}
+                ></h5>
               </div>
             </div>
           </Col>
           <Col xs={2}>
-            <h5 className="fa fa-close"></h5>
+            <h5
+              className="fa fa-close"
+              onClick={() => handleDeleteCartData(ProductId)}
+            ></h5>
           </Col>
         </Row>
       )}

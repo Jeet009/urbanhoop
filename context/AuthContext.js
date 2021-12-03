@@ -12,27 +12,12 @@ export const AuthProvider = (props) => {
     setUser(userData);
 
     axios
-      .post(
-        "http://139.59.38.251:1337/auth/local/register",
-        {
-          username: "jeet34c",
-          email: "jeet@gmail.com",
-          password: "admin456",
-        },
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .post("http://139.59.38.251:1337/auth/local/register")
       .then((response) => {
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        window.location.href = "/";
+        window.location.href = "/profile";
       })
       .catch((error) => {
-        console.log("An error occurred:", error.response);
+        window.location.href = "/profile";
       });
   };
 
