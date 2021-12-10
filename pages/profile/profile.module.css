@@ -20,3 +20,12 @@
   flex-direction: column;
   height: 100%;
 }
+.formDiv {
+  min-height: 50vh;
+  padding: 30px;
+}
+
+.col {
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+}

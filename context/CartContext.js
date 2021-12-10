@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
-  addDoc,
   getDocs,
+  addDoc,
   doc,
   deleteDoc,
   updateDoc,
@@ -39,7 +39,6 @@ export const CartProvider = (props) => {
   const handleCartAddition = async (data) => {
     const prevData = await JSON.parse(localStorage.getItem("cart"));
 
-    // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, user.phoneNumber), {
       cart: data,
       quantity: 1,
@@ -47,7 +46,6 @@ export const CartProvider = (props) => {
     fetchCartData().then((data) => {
       setCartData(data);
     });
-    console.log("Document written with ID: ", docRef.id);
 
     if (prevData) {
       let products = prevData;

@@ -20,7 +20,7 @@ function productList({ data, subcategory, category }) {
   const filterCart = () => {
     if (cartData) {
       cartData.forEach((res) => {
-        if (res.cart.id == data.id) {
+        if (res.cart && res.cart.id == data.id) {
           setCartFilteredData(res.cart.id);
         }
       });

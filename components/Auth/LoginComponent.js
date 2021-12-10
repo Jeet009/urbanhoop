@@ -31,7 +31,6 @@ function LoginComponent() {
         setGotOTP(true);
       })
       .then(() => {
-        setPhoneNumber("");
         setOtp("");
       })
       .catch(function (error) {
@@ -48,7 +47,7 @@ function LoginComponent() {
       .confirm(otp)
       .then(function (result) {
         var user = result.user;
-        initializeUser(user);
+        initializeUser(user, phoneNumber);
       })
       .catch(function (error) {
         console.log(error);

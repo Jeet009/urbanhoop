@@ -12,7 +12,7 @@ function index() {
               className={styles.profileImage}
               style={{
                 backgroundImage:
-                  "url(https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)",
+                  "url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png)",
               }}
             ></div>
           </Col>

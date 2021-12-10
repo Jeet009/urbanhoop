@@ -1,24 +1,48 @@
 import React, { createContext, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
-import axios from "axios";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const [user, setUser] = useState();
 
-  const initializeUser = (userData) => {
+  const initializeUser = async (userData, phoneNumber) => {
     setUser(userData);
 
-    axios
-      .post("http://139.59.38.251:1337/auth/local/register")
-      .then((response) => {
-        window.location.href = "/profile";
+    const res = await checkingUserAvailability(phoneNumber);
+
+    if (!res[0]) {
+      fetch("http://139.59.38.251:1337/customers", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: "",
+          phoneNumber: phoneNumber,
+          email: "",
+          pincode: 0,
+          address: "",
+        }),
       })
-      .catch((error) => {
-        window.location.href = "/profile";
-      });
+        .then((res) => res.json())
+        .then(() => {
+          window.location.href = "/profile";
+        });
+    } else {
+      window.location.href = "/profile";
+    }
+  };
+
+  const checkingUserAvailability = async (data) => {
+    const res = await fetch(
+      `http://139.59.38.251:1337/customers?phoneNumber_contains=${data}`
+    );
+    const Data = await res.json();
+
+    return Data;
   };
 
   onAuthStateChanged(auth, (user) => {
