@@ -7,12 +7,22 @@ import RectCardElement from "../Elements/RectCardElement";
 import styles from "./cart.module.css";
 
 function CartComponent() {
+  const [userDetails, setUserDetails] = useState();
   const [checkout, setCheckout] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, checkingUserAvailability } = useContext(AuthContext);
   const { cartData } = useContext(CartContext);
+
+  if (user) {
+    checkingUserAvailability(user.phoneNumber.slice(3)).then((res) =>
+      setUserDetails(res[0])
+    );
+  }
 
   const handleCheckout = () => {
     setCheckout(!checkout);
+  };
+  const handleProfileWindow = () => {
+    window.location.href = "/profile/register";
   };
   return (
     <div>
@@ -22,7 +32,24 @@ function CartComponent() {
           <hr />
           <div>
             <h6>PERSONAL DETAILS</h6>
+            <Row>
+              <Col xs={12}>
+                <h5>
+                  {userDetails &&
+                    (userDetails.name
+                      ? userDetails.name
+                      : "Complete Registration")}
+                </h5>
+                <Col xs={12}>
+                  <h5>+91 {userDetails && userDetails.phoneNumber}</h5>
+                </Col>
+              </Col>
+            </Row>
+            <button className="btn btn-large" onClick={handleProfileWindow}>
+              Update Personal Details
+            </button>
           </div>
+          <hr />
           <div>
             <h6>LOCATION DETAILS</h6>
             <Form>

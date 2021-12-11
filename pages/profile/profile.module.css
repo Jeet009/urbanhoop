@@ -21,8 +21,13 @@
   height: 100%;
 }
 .formDiv {
-  min-height: 50vh;
+  min-height: 70vh;
   padding: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .col {

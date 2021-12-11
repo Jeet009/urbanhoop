@@ -53,9 +53,40 @@ export const AuthProvider = (props) => {
     }
   });
 
+  const updateUserDetails = (
+    id,
+    name,
+    phoneNumber,
+    email,
+    pincode,
+    address
+  ) => {
+    fetch(`http://139.59.38.251:1337/customers/${id}`, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        phoneNumber: phoneNumber,
+        email: email,
+        pincode: pincode,
+        address: address,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "/profile";
+      })
+      .catch((err) => console.log(err));
+  };
+
   const contextProps = {
+    checkingUserAvailability,
     user,
     initializeUser,
+    updateUserDetails,
   };
 
   return (

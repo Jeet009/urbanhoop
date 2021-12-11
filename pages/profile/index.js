@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
 import styles from "./profile.module.css";
 
 function index() {
+  const [userDetails, setUserDetails] = useState();
+  const { checkingUserAvailability, user } = useContext(AuthContext);
+
+  if (user) {
+    checkingUserAvailability(user.phoneNumber.slice(3)).then((res) =>
+      setUserDetails(res[0])
+    );
+  }
+
   return (
     <>
       <Container className={styles.profileDiv}>
@@ -18,8 +28,13 @@ function index() {
           </Col>
           <Col xs={6} md={6}>
             <div className={styles.profileText}>
-              <h5>Jeet Mukherjee</h5>
-              <h6>+91 8001268005</h6>
+              <h5>
+                {userDetails &&
+                  (userDetails.name
+                    ? userDetails.name
+                    : "Complete Registration")}
+              </h5>
+              <h6>+91 {userDetails && userDetails.phoneNumber}</h6>
             </div>
           </Col>
         </Row>
