@@ -15,6 +15,8 @@ export const CartContext = createContext();
 
 export const CartProvider = (props) => {
   const [cartData, setCartData] = useState([]);
+  const [totalCartPrice, setTotalCartPrice] = useState(0);
+  const [totalCartQuantity, setTotalCartQuantity] = useState(0);
 
   const { user } = useContext(AuthContext);
 
@@ -83,6 +85,10 @@ export const CartProvider = (props) => {
     handleDeleteCartData,
     handleQuantityIncrement,
     handleQuantityDecrement,
+    setTotalCartPrice,
+    setTotalCartQuantity,
+    totalCartPrice,
+    totalCartQuantity,
   };
 
   return (

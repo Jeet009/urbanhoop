@@ -1,7 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Form,
+  Row,
+} from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
+import { CheckoutContext } from "../../context/CheckoutContext";
 import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle";
 import RectCardElement from "../Elements/RectCardElement";
 import styles from "./cart.module.css";
@@ -9,8 +17,25 @@ import styles from "./cart.module.css";
 function CartComponent() {
   const [userDetails, setUserDetails] = useState();
   const [checkout, setCheckout] = useState(false);
+
+  const [address, setAddress] = useState();
+  const [pincode, setPincode] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [landmark, setLandmark] = useState();
+  const [paymentMode, setPaymentMode] = useState();
+
   const { user, checkingUserAvailability } = useContext(AuthContext);
-  const { cartData } = useContext(CartContext);
+  const { handleCheckoutAddition } = useContext(CheckoutContext);
+  const {
+    cartData,
+    setTotalCartPrice,
+    setTotalCartQuantity,
+    totalCartPrice,
+    totalCartQuantity,
+  } = useContext(CartContext);
+
+  let totalQuantity = 0;
+  let totalPrice = 0;
 
   if (user) {
     checkingUserAvailability(user.phoneNumber.slice(3)).then((res) =>
@@ -18,8 +43,43 @@ function CartComponent() {
     );
   }
 
+  const handleAddress = (e) => {
+    setAddress(e.target.value);
+  };
+  const handlePincode = (e) => {
+    setPincode(e.target.value);
+  };
+  const handlePhoneNumber = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+  const handleLandmark = (e) => {
+    setLandmark(e.target.value);
+  };
+  const handlePaymentMode = (e) => {
+    setPaymentMode(e);
+    console.log(e);
+  };
+
   const handleCheckout = () => {
+    setTotalCartPrice(totalPrice);
+    setTotalCartQuantity(totalQuantity);
     setCheckout(!checkout);
+  };
+  const handleCheckoutConfirm = (e) => {
+    e.preventDefault();
+    handleCheckoutAddition({
+      cartData,
+      user,
+      totalCartPrice,
+      totalCartQuantity,
+      locationDetails: {
+        address,
+        pincode,
+        phoneNumber,
+        landmark,
+        paymentMode,
+      },
+    });
   };
   const handleProfileWindow = () => {
     window.location.href = "/profile/register";
@@ -50,37 +110,76 @@ function CartComponent() {
             </button>
           </div>
           <hr />
+          <h6>CART DETAILS</h6>
+
+          <h5>Total Price : {totalCartPrice}</h5>
+          <h5>Total Quantity : {totalCartQuantity}</h5>
+
+          <button className="btn btn-large" onClick={handleCheckout}>
+            Edit Cart Details
+          </button>
+
+          <hr />
           <div>
             <h6>LOCATION DETAILS</h6>
             <Form>
               <Row>
-                <Col xs={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Control type="text" placeholder="Address" />
-                  </Form.Group>
-                </Col>
-                <Col xs={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Control type="number" placeholder="Pincode" />
-                  </Form.Group>
-                </Col>
-                <Col xs={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Control type="phone" placeholder="Phone Number" />
-                  </Form.Group>
-                </Col>
-                <Col xs={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Control type="text" placeholder="Landmark" />
-                  </Form.Group>
-                </Col>
                 <Col xs={12}>
                   <Form.Group className="mb-3">
-                    <Form.Control type="text" placeholder="Payment Mode" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Address"
+                      onChange={handleAddress}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="number"
+                      placeholder="Pincode"
+                      onChange={handlePincode}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="phone"
+                      placeholder="Phone Number"
+                      onChange={handlePhoneNumber}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      placeholder="Landmark"
+                      onChange={handleLandmark}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={6}>
+                  <Form.Group className="mb-3">
+                    <DropdownButton
+                      variant="outline-secondary"
+                      title={paymentMode ? paymentMode : "Choose Payment Mode"}
+                      id="input-group-dropdown-1"
+                      className={styles.dropdown}
+                      onSelect={handlePaymentMode}
+                    >
+                      <Dropdown.Item href="#" key="online" eventKey="online">
+                        Online
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#" key="offline" eventKey="offline">
+                        Offline
+                      </Dropdown.Item>
+                    </DropdownButton>
                   </Form.Group>
                 </Col>
               </Row>
-              <button className="btn btn-large" onClick={handleCheckout}>
+              <button className="btn btn-large" onClick={handleCheckoutConfirm}>
                 Checkout
               </button>
             </Form>
@@ -107,6 +206,7 @@ function CartComponent() {
                     type="cart"
                     name={data.cart.product_name}
                     subcategory={data.cart.subcategory.name}
+                    selling_price={data.cart.product_selling_price}
                     backgroundImage={
                       data.cart.background_image[0] &&
                       data.cart.background_image[0].url
@@ -119,8 +219,16 @@ function CartComponent() {
                 <Row>
                   <Col xs={6}>
                     <h6>Total</h6>
-                    <h6>Rs. 500 /-</h6>
-                    <h6>Quantity - 2</h6>
+                    {cartData &&
+                      cartData.map((data) => {
+                        totalQuantity = totalQuantity + data.quantity;
+                        totalPrice =
+                          totalPrice +
+                          parseFloat(data.cart.product_selling_price);
+                        return;
+                      })}
+                    <h6>Rs. {totalPrice} /-</h6>
+                    <h6>Quantity - {totalQuantity}</h6>
                   </Col>
                   <Col xs={6}>
                     <Form>

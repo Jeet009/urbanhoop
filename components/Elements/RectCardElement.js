@@ -10,6 +10,7 @@ function RectCardElement({
   backgroundImage,
   ProductId,
   quantity,
+  selling_price,
 }) {
   const {
     handleDeleteCartData,
@@ -33,6 +34,7 @@ function RectCardElement({
             <div className={styles.cardRecatText}>
               <h6>{name}</h6>
               <span>{subcategory}</span>
+              <span>{selling_price}</span>
               <div>
                 <h5
                   className="fa fa-plus-square"
