@@ -34,8 +34,8 @@ function CartComponent() {
     totalCartQuantity,
   } = useContext(CartContext);
 
-  let totalQuantity = 0;
-  let totalPrice = 0;
+  let totalQuantity = 0.0;
+  let totalPrice = 0.0;
 
   if (user) {
     checkingUserAvailability(user.phoneNumber.slice(3)).then((res) =>
@@ -57,7 +57,6 @@ function CartComponent() {
   };
   const handlePaymentMode = (e) => {
     setPaymentMode(e);
-    console.log(e);
   };
 
   const handleCheckout = () => {
@@ -65,11 +64,26 @@ function CartComponent() {
     setTotalCartQuantity(totalQuantity);
     setCheckout(!checkout);
   };
-  const handleCheckoutConfirm = (e) => {
+  const handleCheckoutConfirm = async (e) => {
     e.preventDefault();
+    let cart_data = [];
+    const res = await cartData.forEach((data) => {
+      cart_data.push({
+        product_quantity: data.quantity,
+        product_name: data.cart.product_name,
+        product_price: data.cart.product_selling_price,
+        product_unit: data.cart.unit,
+        product_net_value: data.cart.unit_net_value,
+        product_gross_value: data.cart.unit_gross_value,
+      });
+    });
+
     handleCheckoutAddition({
-      cartData,
-      user,
+      cart_data,
+      user: {
+        phoneNumber: user.phoneNumber,
+        uid: user.uid,
+      },
       totalCartPrice,
       totalCartQuantity,
       locationDetails: {
@@ -221,7 +235,8 @@ function CartComponent() {
                     <h6>Total</h6>
                     {cartData &&
                       cartData.map((data) => {
-                        totalQuantity = totalQuantity + data.quantity;
+                        totalQuantity =
+                          totalQuantity + parseFloat(data.quantity);
                         totalPrice =
                           totalPrice +
                           parseFloat(data.cart.product_selling_price);
