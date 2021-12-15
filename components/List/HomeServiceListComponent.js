@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import CardElement from "../Elements/CardElement";
 
-function ListComponent({ title, category }) {
+function HomeServiceListComponent({ title, category }) {
   const [photos, setPhotos] = useState();
   useEffect(() => {
     handlePhotoFetch().then((data) => setPhotos(data));
@@ -10,7 +10,7 @@ function ListComponent({ title, category }) {
 
   const handlePhotoFetch = async () => {
     const res = await fetch(
-      `http://139.59.38.251:1337/products/?show_in_home_page_eq=true&&category=2`
+      `http://139.59.38.251:1337/products/?show_in_home_page_eq=true&&category=1`
     );
     const data = await res.json();
 
@@ -38,4 +38,4 @@ function ListComponent({ title, category }) {
   );
 }
 
-export default ListComponent;
+export default HomeServiceListComponent;

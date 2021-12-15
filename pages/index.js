@@ -1,4 +1,5 @@
 import CarouselComponent from "../components/Carousel/CarouselComponent";
+import HomeServiceListComponent from "../components/List/HomeServiceListComponent";
 import ListComponent from "../components/List/ListComponent";
 import OfferComponent from "../components/Others/OfferComponent";
 import TestimonialComponent from "../components/Others/TestimonialComponent";
@@ -9,7 +10,7 @@ export default function Home() {
       <CarouselComponent />
       <br />
       <ListComponent title="Food & Beverage" />
-      <ListComponent title="Home Service" />
+      <HomeServiceListComponent title="Home Service" />
       <OfferComponent />
       <ListComponent title="Top Offer" />
       <TestimonialComponent />

@@ -6,6 +6,7 @@ import MainTemplate from "../template/MainTemplate";
 import { AuthProvider } from "../context/AuthContext";
 import { CartProvider } from "../context/CartContext";
 import { CheckoutProvider } from "../context/CheckoutContext";
+import { CarouselProvider } from "../context/CarouselContext";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,13 +14,15 @@ function MyApp({ Component, pageProps }) {
       <CartProvider>
         <CheckoutProvider>
           <MainTemplate>
-            <CategoryProvider>
-              <SubcategoryProvider>
-                <ProductProvider>
-                  <Component {...pageProps} />
-                </ProductProvider>
-              </SubcategoryProvider>
-            </CategoryProvider>
+            <CarouselProvider>
+              <CategoryProvider>
+                <SubcategoryProvider>
+                  <ProductProvider>
+                    <Component {...pageProps} />
+                  </ProductProvider>
+                </SubcategoryProvider>
+              </CategoryProvider>
+            </CarouselProvider>
           </MainTemplate>
         </CheckoutProvider>
       </CartProvider>

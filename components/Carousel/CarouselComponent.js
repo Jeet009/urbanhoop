@@ -1,37 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Carousel } from "react-bootstrap";
+import { CarouselContext } from "../../context/CarouselContext";
 import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle";
 
 function CarouselComponent() {
+  const { photos } = useContext(CarouselContext);
   return (
     <Carousel prevIcon={false} nextIcon={false}>
-      <Carousel.Item>
-        <BackgroundImageContainerEle
-          title={"All Categories"}
-          overlay={false}
-          type="carousel"
-          href="/"
-          backgroundImage={"/assets/demo.png"}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <BackgroundImageContainerEle
-          title={"All Categories"}
-          overlay={false}
-          type="carousel"
-          href="/"
-          backgroundImage={"/assets/demo.png"}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <BackgroundImageContainerEle
-          title={"All Categories"}
-          overlay={false}
-          type="carousel"
-          href="/"
-          backgroundImage={"/assets/demo.png"}
-        />
-      </Carousel.Item>
+      {photos.map((data) => (
+        <Carousel.Item>
+          <BackgroundImageContainerEle
+            title={"All Categories"}
+            overlay={false}
+            type="carousel"
+            href="/"
+            backgroundImage={`http://139.59.38.251:1337${data.images[0].url}`}
+          />
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }
