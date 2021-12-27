@@ -32,13 +32,13 @@ export const CheckoutProvider = (props) => {
         if (data.locationDetails.paymentMode === "offline") {
           alert("Order placed successfully");
         } else {
-          displayRazorpay();
+          displayRazorpay(data);
         }
       });
   };
 
   // PaymentHandle
-  const displayRazorpay = async () => {
+  const displayRazorpay = async (orderData) => {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -48,19 +48,24 @@ export const CheckoutProvider = (props) => {
       return;
     }
 
-    // const data = await fetch("http://localhost:3000/api/razorpay", {
-    //   method: "POST",
-    // }).then((t) => t.json());
-
-    // console.log(data);
+    const data = await fetch("http://localhost:1337/razorpay", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: orderData.totalCartPrice,
+      }),
+    }).then((t) => t.json());
 
     const options = {
-      key: "rzp_test_KPEsWyIh6McKtG",
-      currency: "INR",
-      amount: "500",
-      order_id: "Oilhvwovbwbdv",
-      name: "Donation",
-      description: "Thank you for nothing. Please give us some money",
+      key: "rzp_test_bF1zcaw6Ryy3lr",
+      currency: data.currency,
+      amount: data.amount.toString(),
+      order_id: data.id,
+      name: "Urbanhoop",
+      description: "Thank you for choosing us",
       image: "http://localhost:1337/logo.svg",
       handler: function (response) {
         alert(response.razorpay_payment_id);
@@ -68,9 +73,9 @@ export const CheckoutProvider = (props) => {
         alert(response.razorpay_signature);
       },
       prefill: {
-        name: "Jeet",
-        email: "sdfdsjfh2@ndsfdf.com",
-        phone_number: "9899999999",
+        name: "",
+        email: "",
+        phone_number: "",
       },
     };
     const paymentObject = new window.Razorpay(options);
