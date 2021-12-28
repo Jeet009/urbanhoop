@@ -42,9 +42,10 @@ function productList({ data, subcategory, category }) {
           {subcategory.name} - {category.name}
         </h6>
         <p>{data.product_info}</p>
+        <br />
         <Row>
           {data.product_images.map((image) => (
-            <Col xs={6} key={data.id}>
+            <Col xs={6} md={4} key={data.id}>
               <div
                 className={styles.product_detail_image}
                 style={{

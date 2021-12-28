@@ -32,7 +32,7 @@ function index({ data }) {
       <>
         <Row>
           {products.map((product) => (
-            <Col xs={6} md={2} key={product.id}>
+            <Col xs={6} md={4} lg={3} xl={2} key={product.id}>
               <CardElement
                 backgroundImage={
                   product.background_image[0] && product.background_image[0].url

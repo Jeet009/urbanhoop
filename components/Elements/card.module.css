@@ -36,19 +36,35 @@
     min-height: 23vh;
   }
 }
+@media (max-width: 770px) and (min-width: 500px) {
+  .cardImage {
+    min-height: 25vh;
+  }
+  .card {
+    min-height: 35vh;
+  }
+}
+@media (max-width: 1020px) and (min-width: 700px) {
+  .cardImage {
+    min-height: 20vh;
+  }
+  .card {
+    min-height: 35vh;
+  }
+}
+
+@media (max-width: 1450px) and (min-width: 1020px) {
+  .cardImage {
+    min-height: 28vh;
+  }
+  .card {
+    min-height: 40vh;
+  }
+}
 
 @media (min-width: 1450px) {
   .cardImage {
     min-height: 41vh;
-  }
-}
-
-@media (max-width: 1450px) and (min-width: 700px) {
-  .cardImage {
-    min-height: 26vh;
-  }
-  .card {
-    min-height: 31vh;
   }
 }
 /* Card Rectangle  */

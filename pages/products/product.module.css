@@ -16,9 +16,9 @@
   border-radius: 5px;
 }
 .product_detail_image {
-  min-height: 35vh;
-  background-color: blanchedalmond;
+  min-height: 25vh;
+  min-width: none;
   border-radius: 5px;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
