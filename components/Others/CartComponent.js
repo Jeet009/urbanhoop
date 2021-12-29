@@ -178,7 +178,7 @@ function CartComponent() {
                   <Form.Group className="mb-3">
                     <DropdownButton
                       variant="outline-secondary"
-                      title={paymentMode ? paymentMode : "Choose Payment Mode"}
+                      title={paymentMode ? paymentMode : "Payment Mode"}
                       id="input-group-dropdown-1"
                       className={styles.dropdown}
                       onSelect={handlePaymentMode}
@@ -239,7 +239,8 @@ function CartComponent() {
                           totalQuantity + parseFloat(data.quantity);
                         totalPrice =
                           totalPrice +
-                          parseFloat(data.cart.product_selling_price);
+                          parseFloat(data.cart.product_selling_price) *
+                            parseFloat(data.quantity);
                         return;
                       })}
                     <h6>Rs. {totalPrice} /-</h6>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import CardElement from "../Elements/CardElement";
 
-function ListComponent({ title, category }) {
+function ListComponent({ title }) {
   const [photos, setPhotos] = useState();
   useEffect(() => {
     handlePhotoFetch().then((data) => setPhotos(data));
@@ -28,8 +28,10 @@ function ListComponent({ title, category }) {
                 backgroundImage={
                   data.background_image[0] && data.background_image[0].url
                 }
+                title={data.product_name}
+                href={`/products/${data.id}?product_name=${data.product_name}`}
+                sub_category_name={data.subcategory.name}
                 product={true}
-                href={"/"}
               />
             </Col>
           ))}

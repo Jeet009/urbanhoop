@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 export const CheckoutContext = createContext();
@@ -12,7 +12,7 @@ export const CheckoutProvider = (props) => {
     const docRef = await addDoc(collection(db, "orders"), {
       data,
     });
-
+    console.log(docRef._key.path.segments[1]);
     fetch("http://139.59.38.251:1337/orders", {
       method: "POST",
       headers: {
@@ -20,7 +20,7 @@ export const CheckoutProvider = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        order_id: docRef.key,
+        order_id: docRef._key.path.segments[1],
         total_order_amount: data.totalCartPrice,
         total_order_quantity: data.totalCartQuantity,
         cart_data: data.cart_data,
@@ -30,15 +30,15 @@ export const CheckoutProvider = (props) => {
       .then((res) => res.json())
       .then(() => {
         if (data.locationDetails.paymentMode === "offline") {
-          alert("Order placed successfully");
+          window.location.href = "/orders/success";
         } else {
-          displayRazorpay(data);
+          displayRazorpay(data, docRef._key.path.segments[1]);
         }
       });
   };
 
   // PaymentHandle
-  const displayRazorpay = async (orderData) => {
+  const displayRazorpay = async (orderData, key) => {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -48,7 +48,7 @@ export const CheckoutProvider = (props) => {
       return;
     }
 
-    const data = await fetch("http://localhost:1337/razorpay", {
+    const data = await fetch("http://139.59.38.251:8080/razorpay", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -67,10 +67,14 @@ export const CheckoutProvider = (props) => {
       name: "Urbanhoop",
       description: "Thank you for choosing us",
       image: "http://localhost:1337/logo.svg",
-      handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+      handler: async (response) => {
+        await updateDoc(doc(db, "orders", key), {
+          razorpay_order_id: response.razorpay_payment_id,
+          razorpay_payment_id: response.razorpay_order_id,
+          razorpay_signature: response.razorpay_signature,
+        });
+
+        window.location.href = "/orders/success";
       },
       prefill: {
         name: "",
