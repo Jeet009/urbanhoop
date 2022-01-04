@@ -1,16 +1,19 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { AuthContext } from "./AuthContext";
 
 export const CheckoutContext = createContext();
 
 export const CheckoutProvider = (props) => {
   const [checkoutDetails, setCheckoutDetails] = useState({});
+  const { user } = useContext(AuthContext);
 
   const handleCheckoutAddition = async (data) => {
     setCheckoutDetails(data);
     const docRef = await addDoc(collection(db, "orders"), {
       data,
+      phoneNumber: user.phoneNumber,
     });
     console.log(docRef._key.path.segments[1]);
     fetch("http://139.59.38.251:1337/orders", {
@@ -25,6 +28,7 @@ export const CheckoutProvider = (props) => {
         total_order_quantity: data.totalCartQuantity,
         cart_data: data.cart_data,
         location_details: data.locationDetails,
+        phone_number: user.phoneNumber,
       }),
     })
       .then((res) => res.json())

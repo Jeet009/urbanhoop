@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
 import BackgroundImageContainerEle from "../../components/Elements/BackgroundImageContainerEle";
 import RectCardElement from "../../components/Elements/RectCardElement";
+import { OrderContext } from "../../context/OrderContext";
 
 function index() {
+  const { orders } = useContext(OrderContext);
+
   return (
     <>
       <Container>
@@ -17,8 +20,13 @@ function index() {
           }
         />
         <br />
-        <RectCardElement type="order" />
-        <RectCardElement type="order" />
+        <center>
+          <h4>Manage Orders</h4>
+        </center>
+        <br />
+        {orders.map((data) => (
+          <RectCardElement type="order" orderData={data.data} />
+        ))}
       </Container>
     </>
   );

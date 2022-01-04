@@ -11,12 +11,15 @@ function RectCardElement({
   ProductId,
   quantity,
   selling_price,
+  orderData,
 }) {
   const {
     handleDeleteCartData,
     handleQuantityIncrement,
     handleQuantityDecrement,
   } = useContext(CartContext);
+
+  console.log(orderData);
 
   return (
     <div className={styles.cardRect}>
@@ -64,26 +67,27 @@ function RectCardElement({
             <div
               className={styles.cardRectImage}
               style={{
-                backgroundImage:
-                  "url(https://images.pexels.com/photos/4054850/pexels-photo-4054850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)",
+                backgroundImage: "url(/assets/logo.jpg)",
               }}
             ></div>
           </Col>
           <Col xs={6}>
             <div className={styles.cardRecatText}>
-              <h6>Food With Items</h6>
-              <span>Category</span>
+              {orderData &&
+                orderData.cart_data.map((data) => (
+                  <h5>
+                    <ul>
+                      <li>{data.product_name}</li>
+                    </ul>
+                  </h5>
+                ))}
+              <span>Total Order Amount : {orderData.totalCartPrice}</span>
+              <span>Total Order Quantity : {orderData.totalCartQuantity}</span>
             </div>
           </Col>
           <Col xs={6} md={4} className={styles.cardRecatText}>
             <span>Order Status</span>
-            <div>
-              <h5 className="fa fa-check-circle"></h5>
-              {"  "}
-              <h5 className="fa fa-check-circle"></h5>
-              {"  "}
-              <h5 className="fa fa-check-circle"></h5>
-            </div>
+            <h6>PLACED</h6>
           </Col>
         </Row>
       )}

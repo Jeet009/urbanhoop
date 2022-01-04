@@ -79,8 +79,9 @@
 .cardRectImage {
   min-height: 10vh;
   background-color: whitesmoke;
-  background-size: cover;
+  background-size: contain;
   border-radius: 5px;
+  background-repeat: no-repeat;
 }
 .cardRecatText {
   display: flex;

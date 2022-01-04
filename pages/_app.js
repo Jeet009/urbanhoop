@@ -7,25 +7,28 @@ import { AuthProvider } from "../context/AuthContext";
 import { CartProvider } from "../context/CartContext";
 import { CheckoutProvider } from "../context/CheckoutContext";
 import { CarouselProvider } from "../context/CarouselContext";
+import { OrderProvider } from "../context/OrderContext";
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <CartProvider>
-        <CheckoutProvider>
-          <MainTemplate>
-            <CarouselProvider>
-              <CategoryProvider>
-                <SubcategoryProvider>
-                  <ProductProvider>
-                    <Component {...pageProps} />
-                  </ProductProvider>
-                </SubcategoryProvider>
-              </CategoryProvider>
-            </CarouselProvider>
-          </MainTemplate>
-        </CheckoutProvider>
-      </CartProvider>
+      <OrderProvider>
+        <CartProvider>
+          <CheckoutProvider>
+            <MainTemplate>
+              <CarouselProvider>
+                <CategoryProvider>
+                  <SubcategoryProvider>
+                    <ProductProvider>
+                      <Component {...pageProps} />
+                    </ProductProvider>
+                  </SubcategoryProvider>
+                </CategoryProvider>
+              </CarouselProvider>
+            </MainTemplate>
+          </CheckoutProvider>
+        </CartProvider>
+      </OrderProvider>
     </AuthProvider>
   );
 }
