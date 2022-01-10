@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./card.module.css";
 import Link from "next/link";
+import { Badge } from "react-bootstrap";
 
 function CardElement({
   backgroundImage,
@@ -8,6 +9,7 @@ function CardElement({
   title,
   sub_category_name,
   href,
+  price,
 }) {
   return (
     <Link href={href}>
@@ -22,8 +24,11 @@ function CardElement({
           <br />
           {product && (
             <>
-              <h5>{title}</h5>
-              <h6>{sub_category_name}</h6>
+              <h6>
+                <Badge bg="danger">{sub_category_name}</Badge>
+              </h6>
+              <h4>{title}</h4>
+              <h4>Rs. {price} /-</h4>
             </>
           )}
           {!product && (

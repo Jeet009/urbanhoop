@@ -29,6 +29,7 @@ function ListComponent({ title }) {
                   data.background_image[0] && data.background_image[0].url
                 }
                 title={data.product_name}
+                price={data.product_selling_price}
                 href={`/products/${data.id}?product_name=${data.product_name}`}
                 sub_category_name={data.subcategory.name}
                 product={true}

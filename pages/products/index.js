@@ -38,6 +38,7 @@ function index({ data }) {
                   product.background_image[0] && product.background_image[0].url
                 }
                 title={product.product_name}
+                price={product.product_selling_price}
                 href={`/products/${product.id}?product_name=${product.product_name}`}
                 sub_category_name={subcategoryname}
                 product={true}

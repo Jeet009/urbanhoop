@@ -56,6 +56,18 @@ function productList({ data, subcategory, category }) {
           ))}
         </Row>
         <br />
+        <h4>Get this item at Rs. {data.product_selling_price} /-</h4>
+        {user && (
+          <button
+            className={
+              cartFilteredData !== data.id ? "btn btn-large" : "d-none"
+            }
+            onClick={handleAddCart}
+          >
+            <span className="fa fa-shopping-cart"></span>
+            {"  "} Add To Cart
+          </button>
+        )}
         <p>{data.product_description}</p>
         <Row className={styles.details_table}>
           <>
