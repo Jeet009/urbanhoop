@@ -56,7 +56,10 @@ function productList({ data, subcategory, category }) {
           ))}
         </Row>
         <br />
-        <h4>Get this item at Rs. {data.product_selling_price} /-</h4>
+        <h4>
+          Get this item at Rs. {data.product_selling_price} /- ({" "}
+          {data.unit_net_value} {data.unit} )
+        </h4>
         {user && (
           <button
             className={

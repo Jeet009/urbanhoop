@@ -10,6 +10,8 @@ function CardElement({
   sub_category_name,
   href,
   price,
+  unit,
+  net_value,
 }) {
   return (
     <Link href={href}>
@@ -27,8 +29,11 @@ function CardElement({
               <h6>
                 <Badge bg="danger">{sub_category_name}</Badge>
               </h6>
-              <h4>{title}</h4>
-              <h4>Rs. {price} /-</h4>
+              <h5>{title}</h5>
+              <h5>Rs. {price} /- </h5>
+              <h6>
+                ({net_value} {unit})
+              </h6>
             </>
           )}
           {!product && (

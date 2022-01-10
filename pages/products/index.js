@@ -39,6 +39,8 @@ function index({ data }) {
                 }
                 title={product.product_name}
                 price={product.product_selling_price}
+                unit={product.unit}
+                net_value={product.unit_net_value}
                 href={`/products/${product.id}?product_name=${product.product_name}`}
                 sub_category_name={subcategoryname}
                 product={true}

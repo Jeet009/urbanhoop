@@ -8,10 +8,10 @@
 .cardImage {
   min-height: 25vh;
   background-color: white;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
-.cardText h6 {
+.cardText {
   font-family: "Poppins", sans-serif;
 }
 
