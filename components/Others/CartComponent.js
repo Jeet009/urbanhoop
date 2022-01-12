@@ -16,6 +16,9 @@ import styles from "./cart.module.css";
 
 function CartComponent() {
   const [userDetails, setUserDetails] = useState();
+  const [couponCode, setCouponCode] = useState();
+  const [discountedPrice, setDiscountedPrice] = useState();
+
   const [checkout, setCheckout] = useState(false);
 
   const [address, setAddress] = useState();
@@ -43,6 +46,25 @@ function CartComponent() {
     );
   }
 
+  const handleCouponChange = (e) => {
+    setCouponCode(e.target.value);
+  };
+
+  const handleCouponAvailability = async () => {
+    const res = await fetch(`http://139.59.38.251:1337/coupons`);
+    const coupon = await res.json();
+
+    coupon.forEach((data) => {
+      if (data.code == couponCode) {
+        totalPrice =
+          parseFloat(totalPrice) -
+          (parseFloat(totalPrice) * parseFloat(data.discountPercent)) / 100;
+      }
+    });
+
+    setDiscountedPrice(totalPrice);
+  };
+
   const handleAddress = (e) => {
     setAddress(e.target.value);
   };
@@ -60,7 +82,7 @@ function CartComponent() {
   };
 
   const handleCheckout = () => {
-    setTotalCartPrice(totalPrice);
+    setTotalCartPrice(discountedPrice ? discountedPrice : totalPrice);
     setTotalCartQuantity(totalQuantity);
     setCheckout(!checkout);
   };
@@ -243,7 +265,9 @@ function CartComponent() {
                             parseFloat(data.quantity);
                         return;
                       })}
-                    <h6>Rs. {totalPrice} /-</h6>
+                    <h6>
+                      Rs. {discountedPrice ? discountedPrice : totalPrice} /-
+                    </h6>
                     <h6>Quantity - {totalQuantity}</h6>
                   </Col>
                   <Col xs={6}>
@@ -253,6 +277,7 @@ function CartComponent() {
                         <Form.Control
                           type="text"
                           placeholder="Enter Coupon Code"
+                          onChange={handleCouponChange}
                         />
                       </Form.Group>
                     </Form>
@@ -260,6 +285,15 @@ function CartComponent() {
                 </Row>
               </Container>
               <br />
+              <button
+                className="btn btn-large"
+                onClick={handleCouponAvailability}
+              >
+                Check Coupon Availability
+              </button>
+              <br />
+              <br />
+
               <button className="btn btn-large" onClick={handleCheckout}>
                 Add Location
               </button>

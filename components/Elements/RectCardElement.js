@@ -19,8 +19,6 @@ function RectCardElement({
     handleQuantityDecrement,
   } = useContext(CartContext);
 
-  console.log(orderData);
-
   return (
     <div className={styles.cardRect}>
       {type == "cart" && (
