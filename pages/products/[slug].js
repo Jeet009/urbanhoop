@@ -49,7 +49,7 @@ function productList({ data, subcategory, category }) {
               <div
                 className={styles.product_detail_image}
                 style={{
-                  backgroundImage: `url(http://139.59.38.251:1337${image.url})`,
+                  backgroundImage: `url(${process.env.API_URL}${image.url})`,
                 }}
               ></div>
             </Col>
@@ -109,10 +109,10 @@ function productList({ data, subcategory, category }) {
 
 export async function getServerSideProps(context) {
   const slug = context.query.slug;
-  const res = await fetch(`http://139.59.38.251:1337/products/${slug}`);
+  const res = await fetch(`${process.env.API_URL}/products/${slug}`);
   const data = await res.json();
   const categoryDetails = await fetch(
-    `http://139.59.38.251:1337/categories/${data.subcategory.category}`
+    `${process.env.API_URL}/categories/${data.subcategory.category}`
   );
   const category = await categoryDetails.json();
 

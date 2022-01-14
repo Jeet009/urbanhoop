@@ -10,7 +10,7 @@ function ListComponent({ title }) {
 
   const handlePhotoFetch = async () => {
     const res = await fetch(
-      `http://139.59.38.251:1337/products/?show_in_home_page_eq=true&&category=2`
+      `${process.env.API_URL}/products/?show_in_home_page_eq=true&&category=2`
     );
     const data = await res.json();
 

@@ -13,7 +13,7 @@ export const AuthProvider = (props) => {
     const res = await checkingUserAvailability(phoneNumber);
 
     if (!res[0]) {
-      fetch("http://139.59.38.251:1337/customers", {
+      fetch(`${process.env.API_URL}/customers`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -38,7 +38,7 @@ export const AuthProvider = (props) => {
 
   const checkingUserAvailability = async (data) => {
     const res = await fetch(
-      `http://139.59.38.251:1337/customers?phoneNumber_contains=${data}`
+      `${process.env.API_URL}/customers?phoneNumber_contains=${data}`
     );
     const Data = await res.json();
 
@@ -61,7 +61,7 @@ export const AuthProvider = (props) => {
     pincode,
     address
   ) => {
-    fetch(`http://139.59.38.251:1337/customers/${id}`, {
+    fetch(`${process.env.API_URL}/customers/${id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

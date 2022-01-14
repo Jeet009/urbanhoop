@@ -51,7 +51,7 @@ function SubCategories({ data }) {
 export async function getServerSideProps(context) {
   const slug = context.query.slug;
   const res = await fetch(
-    `http://139.59.38.251:1337/subcategories/?category=${slug}`
+    `${process.env.API_URL}/subcategories/?category=${slug}`
   );
   const data = await res.json();
 

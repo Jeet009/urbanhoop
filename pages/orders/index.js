@@ -24,7 +24,7 @@ function index() {
           <h4>Manage Orders</h4>
         </center>
         <br />
-        {orders.map((data) => (
+        {orders.reverse().map((data) => (
           <RectCardElement type="order" orderData={data.data} />
         ))}
       </Container>

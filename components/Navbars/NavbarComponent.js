@@ -81,7 +81,10 @@ function NavbarComponent() {
               ></Nav.Link>
               <Nav.Link href="#auth">
                 {user ? (
-                  <Navbar.Brand href="/" className={styles.logo}>
+                  <Navbar.Brand
+                    href="/profile/register"
+                    className={styles.logo}
+                  >
                     {user.phoneNumber}
                   </Navbar.Brand>
                 ) : (

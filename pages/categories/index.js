@@ -25,18 +25,21 @@ function index({ data }) {
         <br />
         <h4>Categoris</h4>
       </center>
-      {categories.map((category) => (
-        <BackgroundImageContainerEle
-          key={category.id}
-          title={category.name}
-          height={"50vh"}
-          href={`/categories/${category.id}?name=${encodeURIComponent(
-            category.name
-          )}`}
-          overlay={true}
-          backgroundImage={`http://139.59.38.251:1337${category.background_image.url}`}
-        />
-      ))}
+      {categories &&
+        categories.map((category) => (
+          <BackgroundImageContainerEle
+            key={category.id}
+            title={category.name}
+            height={"50vh"}
+            href={`/categories/${category.id}?name=${encodeURIComponent(
+              category.name
+            )}`}
+            overlay={true}
+            backgroundImage={`${process.env.API_URL}${
+              category.background_image && category.background_image.url
+            }`}
+          />
+        ))}
 
       <br />
     </div>
@@ -44,8 +47,10 @@ function index({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://139.59.38.251:1337/categories`);
+  const res = await fetch(`${process.env.API_URL}/categories`);
   const data = await res.json();
+
+  console.log(data);
 
   if (!data) {
     return {

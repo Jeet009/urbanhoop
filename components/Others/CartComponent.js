@@ -51,7 +51,7 @@ function CartComponent() {
   };
 
   const handleCouponAvailability = async () => {
-    const res = await fetch(`http://139.59.38.251:1337/coupons`);
+    const res = await fetch(`${process.env.API_URL}/coupons`);
     const coupon = await res.json();
 
     coupon.forEach((data) => {

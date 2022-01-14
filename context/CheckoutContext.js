@@ -16,7 +16,7 @@ export const CheckoutProvider = (props) => {
       phoneNumber: user.phoneNumber,
     });
     console.log(docRef._key.path.segments[1]);
-    fetch("http://139.59.38.251:1337/orders", {
+    fetch(`${process.env.API_URL}/orders`, {
       method: "POST",
       headers: {
         Accept: "application/json",

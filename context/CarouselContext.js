@@ -7,10 +7,11 @@ export const CarouselProvider = (props) => {
 
   useEffect(() => {
     handlePhotoFetch().then((data) => setPhotos(data));
+    console.log(process.env.API_URL);
   }, []);
 
   const handlePhotoFetch = async () => {
-    const res = await fetch(`http://139.59.38.251:1337/sliders`);
+    const res = await fetch(`${process.env.API_URL}/sliders`);
     const data = await res.json();
 
     return data;

@@ -5,19 +5,21 @@ import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle
 
 function CarouselComponent() {
   const { photos } = useContext(CarouselContext);
+  console.log(photos);
   return (
     <Carousel prevIcon={false} nextIcon={false}>
-      {photos.map((data) => (
-        <Carousel.Item>
-          <BackgroundImageContainerEle
-            title={"All Categories"}
-            overlay={false}
-            type="carousel"
-            href="/"
-            backgroundImage={`http://139.59.38.251:1337${data.images[0].url}`}
-          />
-        </Carousel.Item>
-      ))}
+      {photos &&
+        photos.map((data) => (
+          <Carousel.Item>
+            <BackgroundImageContainerEle
+              title={"All Categories"}
+              overlay={false}
+              type="carousel"
+              href="/"
+              backgroundImage={`${process.env.API_URL}${data.images[0].url}`}
+            />
+          </Carousel.Item>
+        ))}
     </Carousel>
   );
 }
