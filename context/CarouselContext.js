@@ -7,7 +7,6 @@ export const CarouselProvider = (props) => {
 
   useEffect(() => {
     handlePhotoFetch().then((data) => setPhotos(data));
-    console.log(process.env.API_URL);
   }, []);
 
   const handlePhotoFetch = async () => {

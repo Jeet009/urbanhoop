@@ -17,7 +17,6 @@ export const OrderProvider = (props) => {
   }, [user]);
 
   const fetchOrders = async () => {
-    console.log(user.phoneNumber);
     const dataArray = [];
 
     const querySnapshot = await getDocs(

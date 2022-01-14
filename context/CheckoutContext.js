@@ -15,7 +15,7 @@ export const CheckoutProvider = (props) => {
       data,
       phoneNumber: user.phoneNumber,
     });
-    console.log(docRef._key.path.segments[1]);
+
     fetch(`${process.env.API_URL}/orders`, {
       method: "POST",
       headers: {

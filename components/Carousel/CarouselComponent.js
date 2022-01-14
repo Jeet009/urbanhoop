@@ -5,7 +5,7 @@ import BackgroundImageContainerEle from "../Elements/BackgroundImageContainerEle
 
 function CarouselComponent() {
   const { photos } = useContext(CarouselContext);
-  console.log(photos);
+
   return (
     <Carousel prevIcon={false} nextIcon={false}>
       {photos &&
