@@ -28,6 +28,11 @@ function HomeServiceListComponent({ title, category }) {
                 backgroundImage={
                   data.background_image[0] && data.background_image[0].url
                 }
+                title={data.product_name}
+                price={data.product_selling_price}
+                unit={data.unit}
+                net_value={data.unit_net_value}
+                sub_category_name={data.subcategory.name}
                 product={true}
                 href={"/"}
               />
