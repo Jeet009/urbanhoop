@@ -10,9 +10,9 @@ function BottomNav() {
         <Row>
           <Col xs={6} lg={3}>
             <BackgroundImageContainerEle
-              title={"top-offers"}
+              title={"Orders"}
               overlay={true}
-              href="/"
+              href="/orders"
               height={"8vh"}
               backgroundImage={
                 "https://images.pexels.com/photos/1128317/pexels-photo-1128317.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"

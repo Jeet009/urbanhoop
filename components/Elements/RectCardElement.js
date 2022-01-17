@@ -73,11 +73,11 @@ function RectCardElement({
             <div className={styles.cardRecatText}>
               {orderData &&
                 orderData.cart_data.map((data) => (
-                  <h5>
+                  <h4>
                     <ul>
                       <li>{data.product_name}</li>
                     </ul>
-                  </h5>
+                  </h4>
                 ))}
               <span>Total Order Amount : {orderData.totalCartPrice}</span>
               <span>Total Order Quantity : {orderData.totalCartQuantity}</span>
@@ -85,7 +85,10 @@ function RectCardElement({
           </Col>
           <Col xs={6} md={4} className={styles.cardRecatText}>
             <span>Order Status</span>
-            <h6>PLACED</h6>
+            <h6>PLACED & Approved</h6>
+            <hr />
+            <span>Contact Details</span>
+            <h6>+91 XXXXX XXXXX</h6>
           </Col>
         </Row>
       )}

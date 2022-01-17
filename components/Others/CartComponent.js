@@ -20,6 +20,9 @@ function CartComponent() {
   const [discountedPrice, setDiscountedPrice] = useState();
 
   const [checkout, setCheckout] = useState(false);
+  const [pincodeStatus, setPincodeStatus] = useState(false);
+  const [pincodeAlert, setPincodeAlert] = useState(false);
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
 
   const [address, setAddress] = useState();
   const [pincode, setPincode] = useState();
@@ -69,7 +72,28 @@ function CartComponent() {
     setAddress(e.target.value);
   };
   const handlePincode = (e) => {
+    setPincodeStatus();
+    setDeliveryCharge();
+    setPincodeAlert();
     setPincode(e.target.value);
+  };
+  const checkPincodeStatus = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`${process.env.API_URL}/delivery-charges`);
+    const data = await res.json();
+
+    data.every((d) => {
+      if (pincode == d.pincode) {
+        setPincodeStatus(true);
+        setDeliveryCharge(d.price);
+        setPincodeAlert(false);
+        return false;
+      } else if (pincode !== d.pincode) {
+        setPincodeStatus(false);
+        setPincodeAlert(true);
+        return true;
+      }
+    });
   };
   const handlePhoneNumber = (e) => {
     setPhoneNumber(e.target.value);
@@ -148,8 +172,18 @@ function CartComponent() {
           <hr />
           <h6>CART DETAILS</h6>
 
-          <h5>Total Price : {totalCartPrice}</h5>
+          <h5>Total Price : {totalCartPrice} /-</h5>
           <h5>Total Quantity : {totalCartQuantity}</h5>
+
+          <h5>
+            Delivery Charge : {deliveryCharge ? deliveryCharge + "/-" : ""}{" "}
+          </h5>
+          <h5>
+            Total Price (With Delivery Charge) :{" "}
+            {deliveryCharge
+              ? parseFloat(totalCartPrice) + parseFloat(deliveryCharge) + " /-"
+              : ""}
+          </h5>
 
           <button className="btn btn-large" onClick={handleCheckout}>
             Edit Cart Details
@@ -205,19 +239,30 @@ function CartComponent() {
                       className={styles.dropdown}
                       onSelect={handlePaymentMode}
                     >
-                      <Dropdown.Item href="#" key="online" eventKey="online">
+                      <Dropdown.Item href="#" key="online" eventKey="Online">
                         Online
                       </Dropdown.Item>
-                      <Dropdown.Item href="#" key="offline" eventKey="offline">
-                        Offline
+                      <Dropdown.Item href="#" key="offline" eventKey="C.O.D">
+                        C.O.D
                       </Dropdown.Item>
                     </DropdownButton>
                   </Form.Group>
                 </Col>
               </Row>
-              <button className="btn btn-large" onClick={handleCheckoutConfirm}>
-                Checkout
+              <button className="btn btn-large" onClick={checkPincodeStatus}>
+                Check Pincode Status
               </button>
+              {pincodeAlert && <span>We are not delivering here!</span>}
+              <br />
+              <br />
+              {pincodeStatus && (
+                <button
+                  className="btn btn-large"
+                  onClick={handleCheckoutConfirm}
+                >
+                  Checkout
+                </button>
+              )}
             </Form>
           </div>
         </div>
