@@ -106,7 +106,11 @@ function CartComponent() {
   };
 
   const handleCheckout = () => {
-    setTotalCartPrice(discountedPrice ? discountedPrice : totalPrice);
+    setTotalCartPrice(
+      discountedPrice
+        ? parseFloat(discountedPrice) + parseFloat(deliveryCharge)
+        : parseFloat(totalPrice) + parseFloat(deliveryCharge)
+    );
     setTotalCartQuantity(totalQuantity);
     setCheckout(!checkout);
   };
@@ -242,7 +246,7 @@ function CartComponent() {
                       <Dropdown.Item href="#" key="online" eventKey="Online">
                         Online
                       </Dropdown.Item>
-                      <Dropdown.Item href="#" key="offline" eventKey="C.O.D">
+                      <Dropdown.Item href="#" key="offline" eventKey="offline">
                         C.O.D
                       </Dropdown.Item>
                     </DropdownButton>
