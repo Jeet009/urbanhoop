@@ -27,7 +27,7 @@ function RectCardElement({
             <div
               className={styles.cardRectImage}
               style={{
-                backgroundImage: `url(http://139.59.38.251:1337${backgroundImage})`,
+                backgroundImage: `url(https://urbanhoop.online${backgroundImage})`,
               }}
             ></div>
           </Col>
