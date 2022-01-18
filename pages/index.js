@@ -53,7 +53,7 @@ export default function Home() {
         </button>
       )}
       <CarouselComponent />
-      <br />
+
       <ListComponent title="Food & Beverage" />
       <HomeServiceListComponent title="Home Service" />
       <OfferComponent />
