@@ -69,7 +69,7 @@ function RectCardElement({
               }}
             ></div>
           </Col>
-          <Col xs={6}>
+          <Col xs={12} md={6}>
             <div className={styles.cardRecatText}>
               {orderData &&
                 orderData.cart_data.map((data) => (
@@ -83,7 +83,7 @@ function RectCardElement({
               <span>Total Order Quantity : {orderData.totalCartQuantity}</span>
             </div>
           </Col>
-          <Col xs={6} md={4} className={styles.cardRecatText}>
+          <Col xs={12} md={4} className={styles.cardRecatText}>
             <span>Order Status</span>
             <h6>PLACED & Approved</h6>
             <hr />
