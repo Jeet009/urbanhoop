@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "./product.module.css";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
+import ModalTemplate from "../../template/ModalTemplate";
 
 function productList({ data, subcategory, category }) {
   const router = useRouter();
@@ -12,6 +13,7 @@ function productList({ data, subcategory, category }) {
   const { handleCartAddition, cartData } = useContext(CartContext);
 
   const [cartFilteredData, setCartFilteredData] = useState();
+  const [show, setShow] = useState();
 
   useEffect(() => {
     filterCart();
@@ -33,9 +35,21 @@ function productList({ data, subcategory, category }) {
     const res = await handleCartAddition(data);
     window.location.href = "/";
   };
+  const handleLoginModal = () => {
+    setShow(!show);
+  };
+  const handleClose = () => {
+    setShow(!show);
+  };
 
   return (
     <div className={styles.details_container}>
+      <ModalTemplate
+        show={show}
+        handleClose={handleClose}
+        modalType="login"
+        sz="md"
+      />
       <Container>
         <h1>{product_name}</h1>
         <h6>
@@ -60,7 +74,7 @@ function productList({ data, subcategory, category }) {
           Get this item at Rs. {data.product_selling_price} /- ({" "}
           {data.unit_net_value} {data.unit} )
         </h4>
-        {user && (
+        {user ? (
           <button
             className={
               cartFilteredData !== data.id ? "btn btn-large" : "d-none"
@@ -69,6 +83,10 @@ function productList({ data, subcategory, category }) {
           >
             <span className="fa fa-shopping-cart"></span>
             {"  "} Add To Cart
+          </button>
+        ) : (
+          <button className={"btn btn-large-login"} onClick={handleLoginModal}>
+            Login/Register {"  "}
           </button>
         )}
         <p>{data.product_description}</p>
@@ -91,7 +109,7 @@ function productList({ data, subcategory, category }) {
             </Col>
           </>
         </Row>
-        {user && (
+        {user ? (
           <button
             className={
               cartFilteredData !== data.id ? "btn btn-custom-float" : "d-none"
@@ -100,6 +118,14 @@ function productList({ data, subcategory, category }) {
           >
             <span className="fa fa-shopping-cart"></span>
             {"  "} Add To Cart
+          </button>
+        ) : (
+          <button
+            className={"btn btn-custom-float-login"}
+            onClick={handleLoginModal}
+          >
+            Login/Register{"  "}
+            <span className="fa fa-sign-in"></span>
           </button>
         )}
       </Container>

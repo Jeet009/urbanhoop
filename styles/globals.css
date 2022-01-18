@@ -52,6 +52,12 @@ input[type="number"]:focus,
   background-color: #ffebeb !important;
   width: 100%;
 }
+.btn-large-login {
+  background-color: #ffebeb !important;
+  font-family: "Poppins", sans-serif;
+
+  width: 100%;
+}
 .btn-secondary {
   background-color: #ffebeb !important;
   font-family: "Poppins", sans-serif;
@@ -60,11 +66,24 @@ input[type="number"]:focus,
   color: #000000;
 }
 .btn-custom-float {
-  background-color: #ffc5c5 !important;
+  background-color: #292929 !important;
   font-family: "Bungee", sans-serif;
   border-radius: 5px;
   border: none;
-  color: #000000;
+  color: #ffc5c5;
+
+  min-height: 5vh;
+
+  position: fixed;
+  bottom: 15px;
+  right: 25px;
+}
+.btn-custom-float-login {
+  background-color: #292929 !important;
+  font-family: "Poppins", sans-serif !important;
+  border-radius: 5px;
+  border: none;
+  color: #ffc5c5;
 
   min-height: 5vh;
 
