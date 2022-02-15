@@ -5,8 +5,10 @@ import {
   Container,
   InputGroup,
   FormControl,
+  Badge,
 } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
+import { CartContext } from "../../context/CartContext";
 import ModalTemplate from "../../template/ModalTemplate";
 import styles from "./navbar.module.css";
 
@@ -14,6 +16,7 @@ function NavbarComponent() {
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const { user } = useContext(AuthContext);
+  const { cartData } = useContext(CartContext);
 
   const handleLoginModal = () => {
     setShow(!show);
@@ -46,7 +49,8 @@ function NavbarComponent() {
         <Container className="navbar-container">
           {/* Logo  */}
           <Navbar.Brand href="/" className={styles.logo}>
-            UrbanHoop.in
+            {/* UrbanHoop.in */}
+            <img src="/assets/Final.png" className={styles.mainlogo} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
@@ -78,7 +82,9 @@ function NavbarComponent() {
                 href="#cart"
                 className="fa fa-big fa-shopping-cart"
                 onClick={handleCartModal}
-              ></Nav.Link>
+              >
+                <Badge className={styles.cartBadge}>{cartData.length}</Badge>
+              </Nav.Link>
               <Nav.Link href="#auth">
                 {user ? (
                   <Navbar.Brand

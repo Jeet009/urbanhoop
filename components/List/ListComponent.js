@@ -31,7 +31,7 @@ function ListComponent({ title }) {
                 title={data.product_name}
                 price={data.product_selling_price}
                 unit={data.unit}
-                net_value={data.unit_net_value}
+                net_value={data.unit_gross_value}
                 href={`/products/${data.id}?product_name=${data.product_name}`}
                 sub_category_name={data.subcategory.name}
                 product={true}

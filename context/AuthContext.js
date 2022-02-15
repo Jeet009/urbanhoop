@@ -29,10 +29,10 @@ export const AuthProvider = (props) => {
       })
         .then((res) => res.json())
         .then(() => {
-          window.location.href = "/profile";
+          window.location.reload();
         });
     } else {
-      window.location.href = "/profile";
+      window.location.reload();
     }
   };
 

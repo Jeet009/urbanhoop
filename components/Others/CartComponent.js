@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
+  Badge,
   Col,
   Container,
   Dropdown,
@@ -17,6 +18,7 @@ import styles from "./cart.module.css";
 function CartComponent() {
   const [userDetails, setUserDetails] = useState();
   const [couponCode, setCouponCode] = useState();
+  const [coupons, setCoupons] = useState();
   const [discountedPrice, setDiscountedPrice] = useState();
 
   const [checkout, setCheckout] = useState(false);
@@ -49,15 +51,31 @@ function CartComponent() {
     );
   }
 
+  useEffect(async () => {
+    fetch(`${process.env.API_URL}/coupons`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCoupons(data);
+      });
+  }, []);
   const handleCouponChange = (e) => {
     setCouponCode(e.target.value);
   };
 
-  const handleCouponAvailability = async () => {
-    const res = await fetch(`${process.env.API_URL}/coupons`);
-    const coupon = await res.json();
+  const handleSetCouponCode = (code) => {
+    coupons.forEach((data) => {
+      if (data.code == code) {
+        totalPrice =
+          parseFloat(totalPrice) -
+          (parseFloat(totalPrice) * parseFloat(data.discountPercent)) / 100;
+      }
+    });
 
-    coupon.forEach((data) => {
+    setDiscountedPrice(totalPrice);
+  };
+
+  const handleCouponAvailability = async () => {
+    coupons.forEach((data) => {
       if (data.code == couponCode) {
         totalPrice =
           parseFloat(totalPrice) -
@@ -283,6 +301,24 @@ function CartComponent() {
           />
           {user ? (
             <div className={styles.cartContainer}>
+              <h4>Available Coupons</h4>
+              <Container>
+                <Row>
+                  {coupons &&
+                    coupons.map((c) => (
+                      <Col xs={4} className={styles.couponBadgeCol}>
+                        <button
+                          className={styles.couponBadge + " btn btn-custom"}
+                          onClick={() => {
+                            handleSetCouponCode(c.code);
+                          }}
+                        >
+                          {c.code}
+                        </button>
+                      </Col>
+                    ))}
+                </Row>
+              </Container>
               <h4>Cart</h4>
               {cartData &&
                 cartData.map((data) => (
@@ -291,6 +327,8 @@ function CartComponent() {
                     type="cart"
                     name={data.cart.product_name}
                     subcategory={data.cart.subcategory.name}
+                    gross_value={data.cart.unit_gross_value}
+                    unit={data.cart.unit}
                     selling_price={data.cart.product_selling_price}
                     backgroundImage={
                       data.cart.background_image[0] &&

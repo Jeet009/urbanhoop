@@ -23,12 +23,17 @@
 }
 @media (max-width: 450px) {
   .backgroundContainer {
-    min-height: 15vh;
+    min-height: 22vh;
+  }
+}
+@media (max-width: 1450px) and (min-width: 1020px) {
+  .backgroundContainer {
+    min-height: 70vh;
   }
 }
 @media (min-width: 1450px) {
   .backgroundContainer {
-    min-height: 75vh;
+    min-height: 80vh;
   }
 }
 .backgroundCover {

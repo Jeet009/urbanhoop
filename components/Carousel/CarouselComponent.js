@@ -7,7 +7,7 @@ function CarouselComponent() {
   const { photos } = useContext(CarouselContext);
 
   return (
-    <Carousel prevIcon={false} nextIcon={false}>
+    <Carousel prevIcon={false} nextIcon={false} indicators={false}>
       {photos &&
         photos.map((data) => (
           <Carousel.Item>
