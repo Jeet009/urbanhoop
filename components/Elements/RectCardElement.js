@@ -21,6 +21,8 @@ function RectCardElement({
     handleQuantityDecrement,
   } = useContext(CartContext);
 
+  console.log(orderData);
+
   return (
     <div className={styles.cardRect}>
       {type == "cart" && (
@@ -66,6 +68,8 @@ function RectCardElement({
       )}
       {type == "order" && (
         <Row>
+          <h4>Your order will get delivered in 90 minutes</h4>
+          <hr />
           <Col xs={12} md={2}>
             <div
               className={styles.cardRectImage}

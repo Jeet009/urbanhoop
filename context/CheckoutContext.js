@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "../firebase/config";
 import { AuthContext } from "./AuthContext";
 
@@ -11,34 +17,58 @@ export const CheckoutProvider = (props) => {
 
   const handleCheckoutAddition = async (data) => {
     setCheckoutDetails(data);
-    const docRef = await addDoc(collection(db, "orders"), {
-      data,
-      phoneNumber: user.phoneNumber,
-    });
-
-    fetch(`${process.env.API_URL}/orders`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        order_id: docRef._key.path.segments[1],
-        total_order_amount: data.totalCartPrice,
-        total_order_quantity: data.totalCartQuantity,
-        cart_data: data.cart_data,
-        location_details: data.locationDetails,
-        phone_number: user.phoneNumber,
-      }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        if (data.locationDetails.paymentMode === "offline") {
-          window.location.href = "/orders/success";
-        } else {
-          displayRazorpay(data, docRef._key.path.segments[1]);
-        }
+    try {
+      const docRef = await addDoc(collection(db, "orders"), {
+        data,
+        phoneNumber: user.phoneNumber,
+        createdAt: serverTimestamp(),
       });
+
+      fetch(`${process.env.API_URL}/orders`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          order_id: docRef._key.path.segments[1],
+          total_order_amount: data.totalCartPrice,
+          total_order_quantity: data.totalCartQuantity,
+          cart_data: data.cart_data,
+          location_details: data.locationDetails,
+          user: data.user,
+          phone_number: user.phoneNumber,
+        }),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          fetch(`http://139.59.38.251:5000/v1/api/orders`, {
+            mode: "cors",
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              order_id: docRef._key.path.segments[1],
+              cart_data: data.cart_data,
+              total_order_amount: data.totalCartPrice,
+              total_order_quantity: data.totalCartQuantity,
+              location_details: data.locationDetails,
+              user: data.user,
+              phone_number: user.phoneNumber,
+            }),
+          }).then(() => {
+            if (data.locationDetails.paymentMode === "offline") {
+              window.location.href = "/orders/success";
+            } else {
+              displayRazorpay(data, docRef._key.path.segments[1]);
+            }
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // PaymentHandle

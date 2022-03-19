@@ -40,6 +40,7 @@ function CartComponent() {
     setTotalCartQuantity,
     totalCartPrice,
     totalCartQuantity,
+    handleDeleteCartData,
   } = useContext(CartContext);
 
   let totalQuantity = 0.0;
@@ -146,11 +147,12 @@ function CartComponent() {
       });
     });
 
-    handleCheckoutAddition({
+    await handleCheckoutAddition({
       cart_data,
       user: {
         phoneNumber: user.phoneNumber,
         uid: user.uid,
+        email: userDetails.email,
       },
       totalCartPrice,
       totalCartQuantity,
@@ -161,6 +163,9 @@ function CartComponent() {
         landmark,
         paymentMode,
       },
+    });
+    await cartData.forEach((data) => {
+      handleDeleteCartData(data.key);
     });
   };
   const handleProfileWindow = () => {

@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { db } from "../firebase/config";
 import { AuthContext } from "./AuthContext";
@@ -22,7 +22,8 @@ export const OrderProvider = (props) => {
     const querySnapshot = await getDocs(
       query(
         collection(db, "orders"),
-        where("phoneNumber", "==", user.phoneNumber)
+        where("phoneNumber", "==", user.phoneNumber),
+        // orderBy("createdAt")
       )
     );
     querySnapshot.forEach((product) => {
