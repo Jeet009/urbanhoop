@@ -48,6 +48,7 @@ input[type="number"]:focus,
 .btn {
   background-color: #ffc5c5 !important;
 }
+
 .btn-large {
   background-color: #ffebeb !important;
   width: 100%;
@@ -65,6 +66,7 @@ input[type="number"]:focus,
   border: none;
   color: #000000;
 }
+
 .btn-custom-float {
   background-color: #292929 !important;
   font-family: "Bungee", sans-serif;
@@ -97,12 +99,21 @@ input[type="number"]:focus,
   font-size: 35px;
   color: #ffffff !important;
 }
-.navbar-toggler {
-  border: none !important;
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
 }
-.navbar-toggler:focus {
-  border: none !important;
+.btn:focus,
+button:focus,
+a:focus {
+  outline: none !important;
+  outline-offset: none !important;
+  box-shadow: none !important;
 }
+
 /* Carousel  */
 .carousel {
   min-height: 50vh;

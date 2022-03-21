@@ -8,6 +8,7 @@ import { CartProvider } from "../context/CartContext";
 import { CheckoutProvider } from "../context/CheckoutContext";
 import { CarouselProvider } from "../context/CarouselContext";
 import { OrderProvider } from "../context/OrderContext";
+import { SearchProvider } from "../context/SearchContext";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -15,17 +16,19 @@ function MyApp({ Component, pageProps }) {
       <OrderProvider>
         <CartProvider>
           <CheckoutProvider>
-            <MainTemplate>
-              <CarouselProvider>
-                <CategoryProvider>
-                  <SubcategoryProvider>
-                    <ProductProvider>
-                      <Component {...pageProps} />
-                    </ProductProvider>
-                  </SubcategoryProvider>
-                </CategoryProvider>
-              </CarouselProvider>
-            </MainTemplate>
+            <SearchProvider>
+              <MainTemplate>
+                <CarouselProvider>
+                  <CategoryProvider>
+                    <SubcategoryProvider>
+                      <ProductProvider>
+                        <Component {...pageProps} />
+                      </ProductProvider>
+                    </SubcategoryProvider>
+                  </CategoryProvider>
+                </CarouselProvider>
+              </MainTemplate>
+            </SearchProvider>
           </CheckoutProvider>
         </CartProvider>
       </OrderProvider>

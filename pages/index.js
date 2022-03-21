@@ -25,6 +25,7 @@ export default function Home() {
   const handleCloseCart = () => {
     setShowCart(!showCart);
   };
+
   return (
     <div>
       <ModalTemplate
@@ -39,6 +40,7 @@ export default function Home() {
         modalType="cart"
         sz="md"
       />
+
       {user ? (
         <button className={"btn btn-custom-float"} onClick={handleShowCart}>
           <span className="fa fa-shopping-cart"></span>

@@ -9,14 +9,19 @@ import {
 } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
+import { SearchContext } from "../../context/SearchContext";
 import ModalTemplate from "../../template/ModalTemplate";
 import styles from "./navbar.module.css";
 
 function NavbarComponent() {
   const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [searchText, setSearchText] = useState();
+
   const { user } = useContext(AuthContext);
   const { cartData } = useContext(CartContext);
+  const { handleSearchText, showSearch, setShowSearch } =
+    useContext(SearchContext);
 
   const handleLoginModal = () => {
     setShow(!show);
@@ -31,6 +36,16 @@ function NavbarComponent() {
   const handleCloseCart = () => {
     setShowCart(!showCart);
   };
+  const handleSearch = () => {
+    setShowSearch(!showSearch);
+  };
+  const handleCloseSearch = () => {
+    setShowSearch(!showSearch);
+  };
+  const captureSearchText = (e) => {
+    setSearchText(e.target.value);
+    handleSearchText(e.target.value);
+  };
   return (
     <div>
       <ModalTemplate
@@ -44,6 +59,12 @@ function NavbarComponent() {
         handleClose={handleCloseCart}
         modalType="cart"
         sz="md"
+      />
+      <ModalTemplate
+        show={showSearch}
+        handleClose={handleCloseSearch}
+        modalType="search"
+        sz="lg"
       />
       <Navbar className={"navbar-bg" + " " + styles.navbarBg} expand="lg">
         <Container className="navbar-container">
@@ -65,9 +86,13 @@ function NavbarComponent() {
                 aria-label="search"
                 aria-describedby="basic-addon2"
                 className={styles.search}
+                onChange={captureSearchText}
               />
               <InputGroup.Text id="basic-addon2" className={styles.btnCover}>
-                <button className="btn fa fa-search"></button>
+                <button
+                  className="btn fa fa-search"
+                  onClick={handleSearch}
+                ></button>
               </InputGroup.Text>
             </InputGroup>
           </Navbar.Collapse>

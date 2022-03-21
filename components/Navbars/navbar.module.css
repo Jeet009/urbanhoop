@@ -34,3 +34,9 @@
   margin-left: -1vh;
   margin-top: -1vh;
 }
+
+@media (max-width: 450px) {
+  .mainlogo {
+    margin-bottom: 10px;
+  }
+}
