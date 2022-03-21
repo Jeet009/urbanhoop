@@ -42,7 +42,7 @@ export const CheckoutProvider = (props) => {
       })
         .then((res) => res.json())
         .then(() => {
-          fetch(`http://139.59.38.251:5000/v1/api/orders`, {
+          fetch(`https://aqueous-depths-67949.herokuapp.com/v1/api/orders`, {
             mode: "cors",
             method: "POST",
             headers: {
